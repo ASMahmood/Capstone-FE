@@ -1,21 +1,21 @@
 export interface reduxStore {
   user: {
-    email: String;
-    username: String;
+    email: string;
+    username: string;
     friends: {}[];
     rooms: {}[];
-    profilePic: String;
+    profilePic: string;
   };
   error: {
-    message: String;
-    code: Number;
-    severity: String;
+    message: string;
+    code: number;
+    severity: string;
   };
-  loading: Boolean;
+  loading: boolean;
   room: {
     canvases: {}[];
     participants: {}[];
     onlineParticipants: {}[];
-    name: String;
+    name: string;
   };
 }

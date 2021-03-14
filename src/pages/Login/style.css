@@ -1,0 +1,14 @@
+.loginBody {
+  margin-top: 1rem;
+  color: rgb(114, 114, 114);
+  font-size: 18px;
+  padding-left: 5vw;
+  padding-right: 5vw;
+}
+
+.centerForm {
+  background-color: rgb(102, 15, 102);
+  width: 100%;
+  height: 50vh;
+  border-radius: 25px;
+}
