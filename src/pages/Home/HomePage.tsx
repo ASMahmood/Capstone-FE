@@ -16,7 +16,7 @@ function HomePage() {
           </Row>
           <Row className="mt-4">
             <Col xs={6} className="friendList"></Col>
-            <Col xs={{ span: 5, offset: 1 }} className="randoMeme"></Col>
+            <Col xs={5} className="randoMeme ml-4"></Col>
           </Row>
         </Col>
       </Row>
