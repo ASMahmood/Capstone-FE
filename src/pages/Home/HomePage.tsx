@@ -4,10 +4,13 @@ import { RouteComponentProps } from "react-router-dom";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import "./HomePage.css";
+import { fetchMe } from "../../functions/api";
 import { fetchUserInfo } from "../../functions/other";
 import { reduxStore } from "../../types/reduxInterface";
+import { populateUserDispatch } from "../../types/dispatchInterfaces";
+import UserBox from "../../components/UserBox";
 
-type homePageProps = reduxStore & RouteComponentProps;
+type homePageProps = reduxStore & RouteComponentProps & populateUserDispatch;
 
 const mapStateToProps = (state: reduxStore) => state;
 
@@ -24,7 +27,8 @@ function HomePage(props: homePageProps) {
     const checkIfOnline = async () => {
       const response = await fetchUserInfo();
       if (response) {
-        props.populateUser(response);
+        const user = await fetchMe();
+        props.populateUser(user);
       } else {
         props.history.push("/login");
       }
@@ -39,7 +43,7 @@ function HomePage(props: homePageProps) {
           xs={12}
           className="userBox d-flex justify-content-center align-items-center"
         >
-          <h3>USER INFO</h3>
+          <UserBox />
         </Col>
       </Row>
       <Row className="mt-4">

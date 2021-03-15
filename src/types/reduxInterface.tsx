@@ -1,5 +1,6 @@
 export interface reduxStore {
   user: {
+    _id: string;
     email: string;
     username: string;
     friends: {}[];

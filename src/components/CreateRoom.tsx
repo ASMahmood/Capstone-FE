@@ -4,8 +4,8 @@ import { reduxStore } from "../types/reduxInterface";
 
 const mapStateToProps = (state: reduxStore) => state;
 
-function UserBox(props: reduxStore) {
-  return <div>Hello there, {props.user.username}</div>;
+function CreateRoom(props: reduxStore) {
+  return <div className="createRoomBox"></div>;
 }
 
-export default connect(mapStateToProps)(UserBox);
+export default connect(mapStateToProps)(CreateRoom);
