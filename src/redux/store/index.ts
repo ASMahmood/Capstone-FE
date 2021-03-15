@@ -5,6 +5,12 @@ import errorReducers from "../reducers/error";
 import loadingReducers from "../reducers/loading";
 import roomReducers from "../reducers/room";
 
+declare global {
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+  }
+}
+
 const composedEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const initalState = {

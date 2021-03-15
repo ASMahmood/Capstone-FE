@@ -9,6 +9,28 @@
 .centerForm {
   background-color: rgb(102, 15, 102);
   width: 100%;
-  height: 50vh;
+  height: auto;
   border-radius: 25px;
+}
+
+.loginTitle {
+  font-weight: 400;
+  font-size: 40px;
+}
+
+.loginSubTitle {
+  font-weight: 400;
+  font-size: 20px;
+  margin: 0;
+}
+
+.imagePreview {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.imagePreview > img {
+  width: 150px;
+  border-radius: 5px;
+  object-fit: cover;
 }
