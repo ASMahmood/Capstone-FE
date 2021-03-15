@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./style.css";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { loginUser } from "../../functions/api";
+import { loginUser, registerUser } from "../../functions/api";
 import { RouteComponentProps } from "react-router-dom";
 
 export default function Login(props: RouteComponentProps) {
@@ -19,6 +19,18 @@ export default function Login(props: RouteComponentProps) {
       props.history.push("/");
     } else {
       setExtra(true);
+    }
+  };
+
+  const handleRegisterSubmit = async (
+    e: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    e.preventDefault();
+    const response = await registerUser(email, password, username);
+    console.log(response);
+    if (response.message === "user registered!") {
+      setExtra(false);
+      props.history.push("/");
     }
   };
 
@@ -107,12 +119,15 @@ export default function Login(props: RouteComponentProps) {
                 className="d-flex justify-content-center"
               >
                 <Button type="submit" variant="outline-warning">
-                  ATTEMPT LOGIN AGAIN
+                  {extraInfo ? "ATTEMPT LOGIN AGAIN" : "LOGIN"}
                 </Button>
               </Col>
               {extraInfo && (
                 <Col xs={6} className="d-flex justify-content-center">
-                  <Button type="submit" variant="outline-warning">
+                  <Button
+                    onClick={handleRegisterSubmit}
+                    variant="outline-warning"
+                  >
                     REGISTER NEW USER
                   </Button>
                 </Col>

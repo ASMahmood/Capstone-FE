@@ -17,7 +17,7 @@ const initalState = {
   user: {
     email: "",
     username: "",
-    friends: [],
+    associates: [],
     rooms: [],
     profilePic: "",
   },

@@ -1,8 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import { RouteComponentProps } from "react-router-dom";
+import { connect } from "react-redux";
+import { Dispatch } from "redux";
 import "./HomePage.css";
+import { fetchUserInfo } from "../../functions/other";
+import { reduxStore } from "../../types/reduxInterface";
 
-function HomePage() {
+type homePageProps = reduxStore & RouteComponentProps;
+
+const mapStateToProps = (state: reduxStore) => state;
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  populateUser: (user: object) =>
+    dispatch({
+      type: "POPULATE_USER",
+      payload: user,
+    }),
+});
+
+function HomePage(props: homePageProps) {
+  useEffect(() => {
+    const checkIfOnline = async () => {
+      const response = await fetchUserInfo();
+      if (response) {
+        props.populateUser(response);
+      } else {
+        props.history.push("/login");
+      }
+    };
+    checkIfOnline();
+  }, []);
+
   return (
     <Container className="homeBody">
       <Row>
@@ -51,4 +80,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
