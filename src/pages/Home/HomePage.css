@@ -37,3 +37,7 @@
   height: 325px;
   border-radius: 25px;
 }
+
+.createRoomBox {
+  width: 100%;
+}

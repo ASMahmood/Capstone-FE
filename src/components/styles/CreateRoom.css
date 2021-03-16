@@ -1,0 +1,6 @@
+.createRoomBox {
+  width: 100%;
+}
+.createRoomBox input.form-control {
+  width: auto;
+}

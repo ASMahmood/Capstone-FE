@@ -68,3 +68,23 @@ export const fetchMe = async (): Promise<singleMessageResponse> => {
     return { message: "glies looks fuckin sick bruv" };
   }
 };
+
+export const createRoomFetch = async (
+  name: string
+): Promise<singleMessageResponse> => {
+  try {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/rooms`, {
+      method: "POST",
+      body: JSON.stringify({ name: name }),
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const parsedResp = await response.json();
+    return parsedResp;
+  } catch (error) {
+    console.log(error);
+    return { message: "help us" };
+  }
+};

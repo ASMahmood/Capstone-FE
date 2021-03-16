@@ -9,6 +9,7 @@ import { fetchUserInfo } from "../../functions/other";
 import { reduxStore } from "../../types/reduxInterface";
 import { populateUserDispatch } from "../../types/dispatchInterfaces";
 import UserBox from "../../components/UserBox";
+import CreateRoom from "../../components/CreateRoom";
 
 type homePageProps = reduxStore & RouteComponentProps & populateUserDispatch;
 
@@ -59,7 +60,7 @@ function HomePage(props: homePageProps) {
               xs={12}
               className="createRoom d-flex justify-content-center align-items-center"
             >
-              <h3>CREATE ROOM</h3>
+              <CreateRoom />
             </Col>
           </Row>
           <Row className="mt-4">
