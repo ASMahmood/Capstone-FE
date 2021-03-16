@@ -1,13 +1,25 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { reduxStore } from "../types/reduxInterface";
+import { populateUserDispatch } from "../types/dispatchInterfaces";
 import { Form, Button } from "react-bootstrap";
 import "./styles/CreateRoom.css";
-import { createRoomFetch } from "../functions/api";
+import { Dispatch } from "redux";
+import { createRoomFetch, addUserToRoom, fetchMe } from "../functions/api";
+
+type createRoomProps = reduxStore & populateUserDispatch;
 
 const mapStateToProps = (state: reduxStore) => state;
 
-function CreateRoom(props: reduxStore) {
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  populateUser: (user: object) =>
+    dispatch({
+      type: "POPULATE_USER",
+      payload: user,
+    }),
+});
+
+function CreateRoom(props: createRoomProps) {
   const [roomName, setRoomName] = useState<string>("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -16,6 +28,13 @@ function CreateRoom(props: reduxStore) {
     if (response.message === "help us") {
       console.log("UH OH STINKY");
     } else {
+      const res2 = await addUserToRoom(response.message, props.user._id);
+      if (res2.message === "authorized") {
+        const user = await fetchMe();
+        props.populateUser(user);
+      } else {
+        console.log("SECOND STINKY");
+      }
     }
   };
 
@@ -37,4 +56,4 @@ function CreateRoom(props: reduxStore) {
   );
 }
 
-export default connect(mapStateToProps)(CreateRoom);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateRoom);

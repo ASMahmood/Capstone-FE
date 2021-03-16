@@ -88,3 +88,26 @@ export const createRoomFetch = async (
     return { message: "help us" };
   }
 };
+
+export const addUserToRoom = async (
+  roomId: string,
+  userId: string
+): Promise<singleMessageResponse> => {
+  try {
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/rooms/${roomId}/add-user/${userId}`,
+      {
+        method: "PUT",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const parsedResp = await response.json();
+    return parsedResp;
+  } catch (error) {
+    console.log(error);
+    return { message: "ya dun goofed" };
+  }
+};
