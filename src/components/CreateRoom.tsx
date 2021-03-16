@@ -32,6 +32,7 @@ function CreateRoom(props: createRoomProps) {
       if (res2.message === "authorized") {
         const user = await fetchMe();
         props.populateUser(user);
+        setRoomName("");
       } else {
         console.log("SECOND STINKY");
       }

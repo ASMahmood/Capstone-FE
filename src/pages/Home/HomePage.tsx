@@ -10,6 +10,7 @@ import { reduxStore } from "../../types/reduxInterface";
 import { populateUserDispatch } from "../../types/dispatchInterfaces";
 import UserBox from "../../components/UserBox";
 import CreateRoom from "../../components/CreateRoom";
+import RoomList from "../../components/RoomList";
 
 type homePageProps = reduxStore & RouteComponentProps & populateUserDispatch;
 
@@ -52,7 +53,7 @@ function HomePage(props: homePageProps) {
           xs={3}
           className="roomList d-flex justify-content-center align-items-center text-center"
         >
-          <h3>ROOM LIST</h3>
+          <RoomList />
         </Col>
         <Col xs={9} className="pl-5">
           <Row>

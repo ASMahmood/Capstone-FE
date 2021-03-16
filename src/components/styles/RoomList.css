@@ -1,0 +1,14 @@
+.roomListBox {
+  width: 100%;
+  height: 90%;
+}
+
+.roomListing {
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.noListings {
+  background-color: transparent;
+  cursor: pointer;
+}

@@ -4,7 +4,13 @@ export interface reduxStore {
     email: string;
     username: string;
     friends: {}[];
-    rooms: {}[];
+    rooms: {
+      _id: string;
+      canvases: {}[];
+      participants: {}[];
+      onlineParticipants: {}[];
+      name: string;
+    }[];
     profilePic: string;
   };
   error: {
@@ -19,4 +25,12 @@ export interface reduxStore {
     onlineParticipants: {}[];
     name: string;
   };
+}
+
+export interface individualRoom {
+  _id: string;
+  canvases: {}[];
+  participants: {}[];
+  onlineParticipants: {}[];
+  name: string;
 }
