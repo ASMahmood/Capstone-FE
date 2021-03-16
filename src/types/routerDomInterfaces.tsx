@@ -19,3 +19,7 @@ export interface history {
     name: string;
   };
 }
+
+export interface MatchParams {
+  id: string;
+}

@@ -111,3 +111,21 @@ export const addUserToRoom = async (
     return { message: "ya dun goofed" };
   }
 };
+
+export const fetchRoom = async (
+  roomId: string
+): Promise<singleMessageResponse> => {
+  try {
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/rooms/${roomId}`,
+      {
+        credentials: "include",
+      }
+    );
+    const parsedResp = await response.json();
+    return parsedResp;
+  } catch (error) {
+    console.log(error);
+    return { message: "room fetch failed :(" };
+  }
+};
