@@ -1,6 +1,13 @@
 import { currentLineInfo } from "../types/otherInterfaces";
+import io from "socket.io-client";
 
 export const drawOnCanvas = async () => {
+  const connOpt = {
+    transports: ["websocket"],
+  };
+
+  let socket = io("http://localhost:3333", connOpt);
+
   const canvas: HTMLCanvasElement = document.querySelector(
     "#roomCanvas"
   ) as HTMLCanvasElement;
@@ -19,6 +26,8 @@ export const drawOnCanvas = async () => {
   canvas.addEventListener("mouseout", onMouseUp, false);
   canvas.addEventListener("mousemove", onMouseMove, false);
 
+  socket.on("drawing", onDrawingEvent);
+
   window.addEventListener("resize", onResize, false);
   onResize();
 
@@ -27,7 +36,7 @@ export const drawOnCanvas = async () => {
     y0: number,
     x1: number,
     y1: number,
-    emit: boolean
+    emit?: boolean
   ) {
     ctx.beginPath();
     ctx.moveTo(x0, y0);
@@ -37,7 +46,18 @@ export const drawOnCanvas = async () => {
     ctx.stroke();
     ctx.closePath();
 
-    return;
+    if (!emit) {
+      return;
+    }
+    let w = canvas.width;
+    let h = canvas.height;
+
+    socket.emit("drawing", {
+      x0: x0 / w,
+      y0: y0 / h,
+      x1: x1 / w,
+      y1: y1 / h,
+    });
   }
 
   function onMouseDown(e: MouseEvent) {
@@ -62,6 +82,12 @@ export const drawOnCanvas = async () => {
     }
     drawing = false;
     drawLine(current.x, current.y, e.offsetX, e.clientY, true);
+  }
+
+  function onDrawingEvent(data: any) {
+    let w = canvas.width;
+    let h = canvas.height;
+    drawLine(data.x0 * w, data.y0 * h, data.x1 * w, data.y1 * h);
   }
 
   function onResize() {
