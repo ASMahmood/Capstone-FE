@@ -1,0 +1,7 @@
+#roomCanvas {
+  height: 100%;
+  width: 100%;
+  z-index: 5;
+  background-color: green;
+  border-radius: 25px;
+}

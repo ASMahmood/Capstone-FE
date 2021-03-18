@@ -7,6 +7,7 @@ import { reduxStore } from "../../types/reduxInterface";
 import { MatchParams } from "../../types/routerDomInterfaces";
 import { populateRoomDispatch } from "../../types/dispatchInterfaces";
 import { fetchRoom } from "../../functions/api";
+import WhiteBoard from "../../components/WhiteBoard";
 import { RouteComponentProps } from "react-router-dom";
 
 type roomProps = reduxStore &
@@ -43,7 +44,9 @@ function RoomPage(props: roomProps) {
         </Col>
       </Row>
       <Row className="mt-4">
-        <Col xs={9} className="whiteBoard"></Col>
+        <Col xs={9} className="whiteBoard">
+          <WhiteBoard />
+        </Col>
         <Col xs={3} className="chatBox"></Col>
       </Row>
     </Container>

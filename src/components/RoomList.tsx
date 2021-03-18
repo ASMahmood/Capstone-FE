@@ -15,8 +15,9 @@ function RoomList(props: roomListProps) {
       <h4>Open Rooms</h4>
       <ListGroup variant="flush">
         {props.user.rooms.length > 0 ? (
-          props.user.rooms.map((room: individualRoom) => (
+          props.user.rooms.map((room: individualRoom, i) => (
             <ListGroup.Item
+              key={i}
               className="roomListing"
               onClick={() => props.history.push("/room/" + room._id)}
             >
