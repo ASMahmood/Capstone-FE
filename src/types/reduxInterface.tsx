@@ -24,6 +24,7 @@ export interface reduxStore {
     participants: {}[];
     onlineParticipants: {}[];
     name: string;
+    _id: string;
   };
 }
 

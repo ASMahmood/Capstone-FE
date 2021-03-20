@@ -10,32 +10,9 @@ import { fetchRoom } from "../../functions/api";
 import WhiteBoard from "../../components/WhiteBoard";
 import { RouteComponentProps } from "react-router-dom";
 
-type roomProps = reduxStore &
-  populateRoomDispatch &
-  RouteComponentProps<MatchParams>;
-
 const mapStateToProps = (state: reduxStore) => state;
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  populateRoom: (room: object) =>
-    dispatch({
-      type: "POPULATE_ROOM",
-      payload: room,
-    }),
-});
-
-function RoomPage(props: roomProps) {
-  useEffect(() => {
-    const getAndPopulateRoom = async () => {
-      const response = await fetchRoom(props.match.params.id);
-      if (Object.keys(response).length > 1) {
-        props.populateRoom(response);
-      } else {
-        console.log("error! in da matrix");
-      }
-    };
-    getAndPopulateRoom();
-  }, []);
+function RoomPage(props: reduxStore) {
   return (
     <Container fluid className="roomBody">
       <Row>
@@ -53,4 +30,4 @@ function RoomPage(props: roomProps) {
   );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RoomPage);
+export default connect(mapStateToProps)(RoomPage);

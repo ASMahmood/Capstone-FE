@@ -1,13 +1,8 @@
 import { currentLineInfo } from "../types/otherInterfaces";
-import io from "socket.io-client";
+import { receiveDrawing, sendDrawing, joinRoom } from "./socket";
+import { reduxStore } from "../types/reduxInterface";
 
-export const drawOnCanvas = async () => {
-  const connOpt = {
-    transports: ["websocket"],
-  };
-
-  let socket = io("http://localhost:3333", connOpt);
-
+export const drawOnCanvas = async (props: reduxStore) => {
   const canvas: HTMLCanvasElement = document.querySelector(
     "#roomCanvas"
   ) as HTMLCanvasElement;
@@ -21,12 +16,18 @@ export const drawOnCanvas = async () => {
   };
   let drawing = false;
 
+  joinRoom({
+    roomId: props.room._id,
+    username: props.user.username,
+    userId: props.user._id,
+  });
+
   canvas.addEventListener("mousedown", onMouseDown, false);
   canvas.addEventListener("mouseup", onMouseUp, false);
   canvas.addEventListener("mouseout", onMouseUp, false);
   canvas.addEventListener("mousemove", onMouseMove, false);
 
-  socket.on("drawing", onDrawingEvent);
+  receiveDrawing(onDrawingEvent);
 
   window.addEventListener("resize", onResize, false);
   onResize();
@@ -52,11 +53,12 @@ export const drawOnCanvas = async () => {
     let w = canvas.width;
     let h = canvas.height;
 
-    socket.emit("drawing", {
+    sendDrawing({
       x0: x0 / w,
       y0: y0 / h,
       x1: x1 / w,
       y1: y1 / h,
+      roomId: props.room._id,
     });
   }
 
