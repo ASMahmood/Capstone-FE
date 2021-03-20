@@ -9,6 +9,9 @@ export const drawOnCanvas = async (props: reduxStore) => {
   const ctx: CanvasRenderingContext2D = canvas.getContext(
     "2d"
   ) as CanvasRenderingContext2D;
+  const whiteboard: HTMLElement = document.querySelector(
+    ".whiteBoard"
+  ) as HTMLElement;
 
   let current: currentLineInfo = {
     x: 0,
@@ -93,10 +96,6 @@ export const drawOnCanvas = async (props: reduxStore) => {
   }
 
   function onResize() {
-    const whiteboard: HTMLElement = document.querySelector(
-      ".whiteBoard"
-    ) as HTMLElement;
-
     canvas.width = whiteboard.offsetWidth;
     canvas.height = whiteboard.offsetHeight;
   }
