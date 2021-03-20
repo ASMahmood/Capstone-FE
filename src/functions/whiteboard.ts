@@ -63,19 +63,19 @@ export const drawOnCanvas = async (props: reduxStore) => {
   }
 
   function onMouseDown(e: MouseEvent) {
-    console.log(e.offsetX, e.clientY);
+    console.log(e.offsetX, e.offsetY);
     drawing = true;
     current.x = e.offsetX;
-    current.y = e.clientY;
+    current.y = e.offsetY;
   }
 
   function onMouseMove(e: MouseEvent) {
     if (!drawing) {
       return;
     }
-    drawLine(current.x, current.y, e.offsetX, e.clientY, true);
+    drawLine(current.x, current.y, e.offsetX, e.offsetY, true);
     current.x = e.offsetX;
-    current.y = e.clientY;
+    current.y = e.offsetY;
   }
 
   function onMouseUp(e: MouseEvent) {
@@ -83,7 +83,7 @@ export const drawOnCanvas = async (props: reduxStore) => {
       return;
     }
     drawing = false;
-    drawLine(current.x, current.y, e.offsetX, e.clientY, true);
+    drawLine(current.x, current.y, e.offsetX, e.offsetY, true);
   }
 
   function onDrawingEvent(data: any) {
@@ -93,7 +93,11 @@ export const drawOnCanvas = async (props: reduxStore) => {
   }
 
   function onResize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    const whiteboard: HTMLElement = document.querySelector(
+      ".whiteBoard"
+    ) as HTMLElement;
+
+    canvas.width = whiteboard.offsetWidth;
+    canvas.height = whiteboard.offsetHeight;
   }
 };
