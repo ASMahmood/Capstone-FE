@@ -1,5 +1,5 @@
 import io from "socket.io-client";
-import { joinRoomSocketData } from "../types/otherInterfaces";
+import { joinLeaveRoomSocketData } from "../types/otherInterfaces";
 
 const connOpt = {
   transports: ["websocket"],
@@ -7,8 +7,12 @@ const connOpt = {
 
 let socket = io("http://localhost:3333", connOpt);
 
-export const joinRoom = (data: joinRoomSocketData) => {
+export const joinRoom = (data: joinLeaveRoomSocketData) => {
   socket.emit("JOIN_ROOM", data);
+};
+
+export const leaveRoom = (data: joinLeaveRoomSocketData) => {
+  socket.emit("LEAVE_ROOM", data);
 };
 
 export const receiveDrawing = (drawfunc: (data: any) => void) => {

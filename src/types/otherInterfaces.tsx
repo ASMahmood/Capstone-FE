@@ -3,7 +3,7 @@ export interface currentLineInfo {
   y: number;
 }
 
-export interface joinRoomSocketData {
+export interface joinLeaveRoomSocketData {
   roomId: string;
   username: string;
   userId: string;
