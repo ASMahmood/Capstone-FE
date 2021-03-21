@@ -8,3 +8,9 @@ export interface joinLeaveRoomSocketData {
   username: string;
   userId: string;
 }
+
+export interface chatMessage {
+  sender: string;
+  text: string;
+  createdAt: string;
+}

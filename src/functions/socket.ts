@@ -1,5 +1,5 @@
 import io from "socket.io-client";
-import { joinLeaveRoomSocketData } from "../types/otherInterfaces";
+import { joinLeaveRoomSocketData, chatMessage } from "../types/otherInterfaces";
 
 const connOpt = {
   transports: ["websocket"],
@@ -17,6 +17,10 @@ export const leaveRoom = (data: joinLeaveRoomSocketData) => {
 
 export const receiveDrawing = (drawfunc: (data: any) => void) => {
   socket.on("drawing", drawfunc);
+};
+
+export const listenChat = (chatFunc: (data: chatMessage) => void) => {
+  socket.on("CHAT_MESSAGE", chatFunc);
 };
 
 export const sendDrawing = (data: any) => {
