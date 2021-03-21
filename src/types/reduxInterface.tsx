@@ -9,6 +9,7 @@ export interface reduxStore {
       canvases: {}[];
       participants: {}[];
       onlineParticipants: {}[];
+      chatHistory: {}[];
       name: string;
     }[];
     profilePic: string;
@@ -23,6 +24,7 @@ export interface reduxStore {
     canvases: {}[];
     participants: {}[];
     onlineParticipants: {}[];
+    chatHistory: {}[];
     name: string;
     _id: string;
   };
@@ -33,5 +35,6 @@ export interface individualRoom {
   canvases: {}[];
   participants: {}[];
   onlineParticipants: {}[];
+  chatHistory: {}[];
   name: string;
 }

@@ -13,7 +13,7 @@ declare global {
 
 const composedEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const initalState = {
+export const initalState = {
   user: {
     _id: "",
     email: "",
@@ -32,6 +32,7 @@ const initalState = {
     canvases: [],
     participants: [],
     onlineParticipants: [],
+    chatHistory: [],
     name: "",
   },
 };
