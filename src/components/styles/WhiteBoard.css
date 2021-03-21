@@ -25,3 +25,15 @@
   border-radius: 15px;
   background-color: transparent;
 }
+
+#widthPicker {
+  width: 50px;
+  height: 30px;
+  text-align: end;
+}
+
+#widthPicker::-webkit-outer-spin-button,
+#widthPicker::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

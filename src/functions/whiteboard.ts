@@ -15,6 +15,9 @@ export const drawOnCanvas = async (props: reduxStore) => {
   const colorPicker: Element = document.querySelector(
     "#colorPicker"
   ) as Element;
+  const widthPicker: Element = document.querySelector(
+    "#widthPicker"
+  ) as Element;
 
   let current: currentLineInfo = {
     x: 0,
@@ -22,6 +25,7 @@ export const drawOnCanvas = async (props: reduxStore) => {
   };
   let drawing = false;
   let color: string = "black";
+  let width: number = 2;
 
   joinRoom({
     roomId: props.room._id,
@@ -34,6 +38,7 @@ export const drawOnCanvas = async (props: reduxStore) => {
   canvas.addEventListener("mouseout", onMouseUp, false);
   canvas.addEventListener("mousemove", onMouseMove, false);
   colorPicker.addEventListener("change", changeColor, false);
+  widthPicker.addEventListener("change", changeWidth, false);
 
   receiveDrawing(onDrawingEvent);
 
@@ -44,19 +49,25 @@ export const drawOnCanvas = async (props: reduxStore) => {
     color = e.currentTarget.value;
   }
 
+  function changeWidth(e: any) {
+    width = e.currentTarget.value;
+  }
+
   function drawLine(
     x0: number,
     y0: number,
     x1: number,
     y1: number,
     color: string,
+    width: number,
     emit?: boolean
   ) {
     ctx.beginPath();
     ctx.moveTo(x0, y0);
     ctx.lineTo(x1, y1);
+    ctx.lineCap = "round";
     ctx.strokeStyle = color;
-    ctx.lineWidth = 2;
+    ctx.lineWidth = width;
     ctx.stroke();
     ctx.closePath();
 
@@ -71,6 +82,8 @@ export const drawOnCanvas = async (props: reduxStore) => {
       y0: y0 / h,
       x1: x1 / w,
       y1: y1 / h,
+      color: color,
+      width: width,
       roomId: props.room._id,
     });
   }
@@ -86,7 +99,7 @@ export const drawOnCanvas = async (props: reduxStore) => {
     if (!drawing) {
       return;
     }
-    drawLine(current.x, current.y, e.offsetX, e.offsetY, color, true);
+    drawLine(current.x, current.y, e.offsetX, e.offsetY, color, width, true);
     current.x = e.offsetX;
     current.y = e.offsetY;
   }
@@ -96,13 +109,13 @@ export const drawOnCanvas = async (props: reduxStore) => {
       return;
     }
     drawing = false;
-    drawLine(current.x, current.y, e.offsetX, e.offsetY, color, true);
+    drawLine(current.x, current.y, e.offsetX, e.offsetY, color, width, true);
   }
 
   function onDrawingEvent(data: any) {
     let w = canvas.width;
     let h = canvas.height;
-    drawLine(data.x0 * w, data.y0 * h, data.x1 * w, data.y1 * h, color);
+    drawLine(data.x0 * w, data.y0 * h, data.x1 * w, data.y1 * h, color, width);
   }
 
   function onResize() {
