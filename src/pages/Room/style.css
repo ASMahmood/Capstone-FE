@@ -13,11 +13,12 @@
 }
 
 .whiteBoard {
-  background-color: rgb(190, 190, 190);
+  background-color: rgb(255, 251, 251);
   width: 100%;
   height: 80vh;
   border-radius: 25px;
   padding: 0;
+  position: relative;
 }
 
 .chatBox {

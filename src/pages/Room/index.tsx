@@ -4,6 +4,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { reduxStore } from "../../types/reduxInterface";
 import WhiteBoard from "../../components/WhiteBoard";
+import WhiteBoardOption from "../../components/WhiteBoardOptions";
 import { leaveRoom } from "../../functions/socket";
 
 const mapStateToProps = (state: reduxStore) => state;
@@ -28,6 +29,7 @@ function RoomPage(props: reduxStore) {
       <Row className="mt-4">
         <Col xs={9} className="whiteBoard">
           <WhiteBoard />
+          <WhiteBoardOption />
         </Col>
         <Col xs={3} className="chatBox"></Col>
       </Row>

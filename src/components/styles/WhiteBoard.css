@@ -2,6 +2,26 @@
   height: 100%;
   width: 100%;
   z-index: 5;
-  background-color: green;
   border-radius: 25px;
+  position: relative;
+}
+
+#boardOptions {
+  position: absolute;
+  background-color: aqua;
+  border: black 1px solid;
+  border-radius: 0 0 25px 25px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 50px;
+  z-index: 5;
+}
+
+#colorPicker {
+  width: 100px;
+  padding: 0;
+  border: none;
+  border-radius: 15px;
+  background-color: transparent;
 }
