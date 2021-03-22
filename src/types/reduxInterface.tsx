@@ -11,6 +11,7 @@ export interface reduxStore {
       onlineParticipants: {}[];
       chatHistory: { sender: string; text: string; createdAt: string }[];
       name: string;
+      images: string;
     }[];
     profilePic: string;
   };
@@ -27,6 +28,7 @@ export interface reduxStore {
     chatHistory: { sender: string; text: string; createdAt: string }[];
     name: string;
     _id: string;
+    images: string;
   };
 }
 
@@ -37,6 +39,7 @@ export interface individualRoom {
   onlineParticipants: {}[];
   chatHistory: {}[];
   name: string;
+  images: string;
 }
 
 export interface individualMessage {
