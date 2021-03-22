@@ -34,6 +34,7 @@ export const initalState = {
     onlineParticipants: [],
     chatHistory: [],
     name: "",
+    images: "",
   },
 };
 
