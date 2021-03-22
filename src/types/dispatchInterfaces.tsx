@@ -5,3 +5,7 @@ export interface populateUserDispatch {
 export interface populateRoomDispatch {
   populateRoom: (room: object) => { type: string; payload: object };
 }
+
+export interface messageDispatch {
+  newMessage: (message: object) => { type: string; payload: object };
+}

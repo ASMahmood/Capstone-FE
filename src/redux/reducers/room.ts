@@ -1,6 +1,5 @@
-import { initalState } from "../store";
 export default function (
-  state = initalState,
+  state = { chatHistory: [] },
   action: { type: string; payload: any }
 ) {
   switch (action.type) {
@@ -12,7 +11,7 @@ export default function (
     case "ADD_MESSAGE_TO_CHAT":
       return {
         ...state,
-        chatHistory: state.room.chatHistory.concat(action.payload),
+        chatHistory: state.chatHistory.concat(action.payload),
       };
     default:
       return state;
