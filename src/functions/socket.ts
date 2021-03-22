@@ -1,5 +1,9 @@
 import io from "socket.io-client";
-import { joinLeaveRoomSocketData, chatMessage } from "../types/otherInterfaces";
+import {
+  joinLeaveRoomSocketData,
+  chatMessage,
+  canvasData,
+} from "../types/otherInterfaces";
 
 type chatWithId = chatMessage & { roomId: string };
 
@@ -23,6 +27,10 @@ export const receiveDrawing = (drawfunc: (data: any) => void) => {
 
 export const sendDrawing = (data: any) => {
   socket.emit("drawing", data);
+};
+
+export const sendCanvasData = (data: canvasData) => {
+  socket.emit("CANVAS_DATA", data);
 };
 
 export const listenChat = (chatFunc: (data: chatMessage) => void) => {

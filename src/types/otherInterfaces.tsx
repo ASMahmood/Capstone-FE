@@ -14,3 +14,8 @@ export interface chatMessage {
   text: string;
   createdAt: Date;
 }
+
+export interface canvasData {
+  canvasData: string;
+  roomId: string;
+}

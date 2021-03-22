@@ -1,5 +1,10 @@
 import { currentLineInfo } from "../types/otherInterfaces";
-import { receiveDrawing, sendDrawing, joinRoom } from "./socket";
+import {
+  receiveDrawing,
+  sendDrawing,
+  joinRoom,
+  sendCanvasData,
+} from "./socket";
 import { reduxStore } from "../types/reduxInterface";
 
 export const drawOnCanvas = async (props: reduxStore) => {
@@ -110,6 +115,7 @@ export const drawOnCanvas = async (props: reduxStore) => {
     }
     drawing = false;
     drawLine(current.x, current.y, e.offsetX, e.offsetY, color, width, true);
+    getCanvasDataAndSend();
   }
 
   function onDrawingEvent(data: any) {
@@ -123,6 +129,11 @@ export const drawOnCanvas = async (props: reduxStore) => {
       data.color,
       data.width
     );
+  }
+
+  async function getCanvasDataAndSend() {
+    let base64ImageData = await canvas.toDataURL("image/png");
+    sendCanvasData({ canvasData: base64ImageData, roomId: props.room._id });
   }
 
   function onResize() {
