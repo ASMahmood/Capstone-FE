@@ -24,11 +24,14 @@ export const drawOnCanvas = async (props: reduxStore) => {
     "#widthPicker"
   ) as Element;
 
-  let image = new Image();
-  image.onload = function () {
-    ctx.drawImage(image, 0, 0);
-  };
-  image.src = props.room.images;
+  function draw() {
+    let image = new Image();
+    image.onload = function () {
+      ctx.drawImage(image, 0, 0);
+    };
+    image.src = props.room.images;
+  }
+  draw();
 
   let current: currentLineInfo = {
     x: 0,
@@ -145,5 +148,6 @@ export const drawOnCanvas = async (props: reduxStore) => {
   function onResize() {
     canvas.width = whiteboard.offsetWidth;
     canvas.height = whiteboard.offsetHeight;
+    draw();
   }
 };
