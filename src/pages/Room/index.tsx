@@ -3,10 +3,11 @@ import "./style.css";
 import { Container, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { reduxStore } from "../../types/reduxInterface";
+import { leaveRoom } from "../../functions/socket";
 import WhiteBoard from "../../components/WhiteBoard";
 import WhiteBoardOption from "../../components/WhiteBoardOptions";
 import ChatList from "../../components/ChatList";
-import { leaveRoom } from "../../functions/socket";
+import SendMessage from "../../components/SendMessage";
 
 const mapStateToProps = (state: reduxStore) => state;
 
@@ -32,8 +33,9 @@ function RoomPage(props: reduxStore) {
           <WhiteBoard />
           <WhiteBoardOption />
         </Col>
-        <Col xs={3} className="chatBox">
+        <Col xs={3} className="chatBox d-flex flex-column justify-content-end">
           <ChatList />
+          <SendMessage />
         </Col>
       </Row>
     </Container>

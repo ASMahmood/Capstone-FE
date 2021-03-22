@@ -1,6 +1,8 @@
 import io from "socket.io-client";
 import { joinLeaveRoomSocketData, chatMessage } from "../types/otherInterfaces";
 
+type chatWithId = chatMessage & { roomId: string };
+
 const connOpt = {
   transports: ["websocket"],
 };
@@ -27,6 +29,6 @@ export const listenChat = (chatFunc: (data: chatMessage) => void) => {
   socket.on("CHAT_MESSAGE", chatFunc);
 };
 
-export const sendChat = (data: chatMessage) => {
+export const sendChat = (data: chatWithId) => {
   socket.emit("CHAT_MESSAGE", data);
 };

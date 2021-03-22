@@ -12,5 +12,5 @@ export interface joinLeaveRoomSocketData {
 export interface chatMessage {
   sender: string;
   text: string;
-  createdAt: string;
+  createdAt: Date;
 }
