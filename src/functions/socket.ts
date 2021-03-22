@@ -19,10 +19,14 @@ export const receiveDrawing = (drawfunc: (data: any) => void) => {
   socket.on("drawing", drawfunc);
 };
 
+export const sendDrawing = (data: any) => {
+  socket.emit("drawing", data);
+};
+
 export const listenChat = (chatFunc: (data: chatMessage) => void) => {
   socket.on("CHAT_MESSAGE", chatFunc);
 };
 
-export const sendDrawing = (data: any) => {
-  socket.emit("drawing", data);
+export const sendChat = (data: chatMessage) => {
+  socket.emit("CHAT_MESSAGE", data);
 };
