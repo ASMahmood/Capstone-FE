@@ -2,12 +2,24 @@ import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import { sendChat } from "../functions/socket";
+import { Dispatch } from "redux";
 import { chatMessage } from "../types/otherInterfaces";
 import { reduxStore, individualMessage } from "../types/reduxInterface";
+import { messageDispatch } from "../types/dispatchInterfaces";
+
+type sendMessageProps = reduxStore & messageDispatch;
 
 const mapStateToProps = (state: reduxStore) => state;
 
-function SendMessage(props: reduxStore) {
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  newMessage: (message: object) =>
+    dispatch({
+      type: "ADD_MESSAGE_TO_CHAT",
+      payload: message,
+    }),
+});
+
+function SendMessage(props: sendMessageProps) {
   const [text, setText] = useState<string>("");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -16,9 +28,9 @@ function SendMessage(props: reduxStore) {
       sender: props.user.username,
       text: text,
       createdAt: new Date(),
-      roomId: props.room._id,
     };
-    sendChat(message);
+    sendChat({ ...message, roomId: props.room._id });
+    props.newMessage(message);
     setText("");
   };
 
@@ -38,4 +50,4 @@ function SendMessage(props: reduxStore) {
   );
 }
 
-export default connect(mapStateToProps)(SendMessage);
+export default connect(mapStateToProps, mapDispatchToProps)(SendMessage);
