@@ -26,6 +26,7 @@ export const sendDrawing = (data: any) => {
 };
 
 export const listenChat = (chatFunc: (data: chatMessage) => void) => {
+  console.log("socket.ts listen");
   socket.on("CHAT_MESSAGE", chatFunc);
 };
 

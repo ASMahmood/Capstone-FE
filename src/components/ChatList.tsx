@@ -22,6 +22,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 function ChatList(props: chatListProps) {
   useEffect(() => {
     listenChat(props.newMessage);
+    console.log("CHATLIST RENDER");
   }, []);
 
   return (
