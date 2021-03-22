@@ -30,6 +30,8 @@ export const drawOnCanvas = async (props: reduxStore) => {
       ctx.drawImage(image, 0, 0);
     };
     image.src = props.room.images;
+    image.width = whiteboard.offsetWidth;
+    image.height = whiteboard.offsetHeight;
   }
   draw();
 
