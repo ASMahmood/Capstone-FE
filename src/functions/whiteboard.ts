@@ -115,7 +115,14 @@ export const drawOnCanvas = async (props: reduxStore) => {
   function onDrawingEvent(data: any) {
     let w = canvas.width;
     let h = canvas.height;
-    drawLine(data.x0 * w, data.y0 * h, data.x1 * w, data.y1 * h, color, width);
+    drawLine(
+      data.x0 * w,
+      data.y0 * h,
+      data.x1 * w,
+      data.y1 * h,
+      data.color,
+      data.width
+    );
   }
 
   function onResize() {
