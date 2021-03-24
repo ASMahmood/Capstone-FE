@@ -6,6 +6,7 @@ import { listenChat } from "../functions/socket";
 import { chatMessage } from "../types/otherInterfaces";
 import { reduxStore, individualMessage } from "../types/reduxInterface";
 import { messageDispatch } from "../types/dispatchInterfaces";
+import "./styles/ChatList.css";
 
 type chatListProps = reduxStore & messageDispatch;
 
@@ -26,11 +27,19 @@ function ChatList(props: chatListProps) {
   }, []);
 
   return (
-    <div>
+    <div id="chatList">
       {props.room.chatHistory.length > 0 &&
         props.room.chatHistory.map((message: individualMessage, i) => (
-          <div className="chatMessage" key={i}>
-            {message.sender} - {message.text}
+          <div
+            className={
+              message.sender === props.user.username
+                ? "userMessage"
+                : "otherMessage"
+            }
+            key={i}
+          >
+            <div>{message.sender}</div>
+            <div>{message.text}</div>
           </div>
         ))}
     </div>

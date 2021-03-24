@@ -42,7 +42,7 @@ function SendMessage(props: sendMessageProps) {
           value={text}
           onChange={(e) => setText(e.currentTarget.value)}
         />
-        <Button type="submit" variant="outline-warning">
+        <Button type="submit" variant="warning">
           SEND
         </Button>
       </Form>

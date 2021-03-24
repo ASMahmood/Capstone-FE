@@ -5,15 +5,14 @@ import { Link } from "react-router-dom";
 function NavBar() {
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
-      <Navbar.Brand>#NEED_A_NAME</Navbar.Brand>
+      <Link to="/">
+        <Navbar.Brand>#NEED_A_NAME</Navbar.Brand>
+      </Link>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           <Link to="/">
             <span className="nav-link">Home</span>
-          </Link>
-          <Link to="/room/help">
-            <span className="nav-link">Room</span>
           </Link>
           <Link to="/login">
             <span className="nav-link">Login</span>
