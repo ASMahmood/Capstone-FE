@@ -19,7 +19,7 @@ function WhiteBoardOptions() {
       />
       px width
       <Form.Label className="ml-4" htmlFor="colorPicker">
-        <FaPalette size="large" />
+        <FaPalette fontSize="20" />
       </Form.Label>
       <Form.Control type="color" id="colorPicker" />
     </div>
