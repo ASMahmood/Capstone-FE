@@ -1,5 +1,6 @@
 #chatList {
   overflow-y: scroll;
+  width: 100%;
 }
 #chatList::-webkit-scrollbar {
   width: 5px;
@@ -30,7 +31,14 @@
   background-color: rgb(11, 168, 189);
   color: black;
   text-align: end;
-  margin: 3px 0;
   padding: 2px 10px;
+  margin: 3px 0;
   width: 90%;
+  margin-left: 10%;
+}
+
+.userMessage > .sender,
+.otherMessage > .sender {
+  font-size: 14px;
+  color: rgb(39, 39, 39);
 }

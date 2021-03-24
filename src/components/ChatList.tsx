@@ -3,6 +3,7 @@ import {} from "react-bootstrap";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { listenChat } from "../functions/socket";
+import { convertTime } from "../functions/other";
 import { chatMessage } from "../types/otherInterfaces";
 import { reduxStore, individualMessage } from "../types/reduxInterface";
 import { messageDispatch } from "../types/dispatchInterfaces";
@@ -38,7 +39,9 @@ function ChatList(props: chatListProps) {
             }
             key={i}
           >
-            <div>{message.sender}</div>
+            <div className="sender">
+              {message.sender} - {convertTime(message.createdAt)}
+            </div>
             <div>{message.text}</div>
           </div>
         ))}
