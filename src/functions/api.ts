@@ -150,3 +150,13 @@ export const uploadAttachment = async (file: File): Promise<string> => {
     return "";
   }
 };
+
+export const downloadAttachment = async (filename: string): Promise<void> => {
+  try {
+    await fetch(`${process.env.REACT_APP_BACKEND_URL}/files/${filename}`, {
+      credentials: "include",
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};

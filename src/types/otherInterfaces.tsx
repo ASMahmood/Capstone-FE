@@ -13,6 +13,7 @@ export interface chatMessage {
   sender: string;
   text: string;
   createdAt: Date;
+  attachment: string;
 }
 
 export interface canvasData {

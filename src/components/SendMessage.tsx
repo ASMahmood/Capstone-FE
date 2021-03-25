@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import { sendChat } from "../functions/socket";
+import { uploadAttachment } from "../functions/api";
 import { Dispatch } from "redux";
 import { chatMessage } from "../types/otherInterfaces";
 import { reduxStore, individualMessage } from "../types/reduxInterface";
@@ -23,21 +24,24 @@ function SendMessage(props: sendMessageProps) {
   const [text, setText] = useState<string>("");
   const [attachment, setAttachment] = useState<File>();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (attachment !== undefined) {
       //SEND ATTTACHEMT
+      const filename = await uploadAttachment(attachment);
       //SEND MESSAGE
+      sendMessage(filename);
     } else {
-      sendMessage();
+      sendMessage("null");
     }
   };
 
-  const sendMessage = () => {
+  const sendMessage = (filename: string) => {
     const message = {
       sender: props.user.username,
       text: text,
       createdAt: new Date(),
+      attachment: filename,
     };
     sendChat({ ...message, roomId: props.room._id });
     props.newMessage(message);

@@ -43,6 +43,18 @@ function ChatList(props: chatListProps) {
               {message.sender} - {convertTime(message.createdAt)}
             </div>
             <div>{message.text}</div>
+            {message.attachment && message.attachment !== "null" && (
+              <div
+                onClick={() =>
+                  window.open(
+                    `${process.env.REACT_APP_BACKEND_URL}/files/${message.attachment}`,
+                    "_blank"
+                  )
+                }
+              >
+                {message.attachment}
+              </div>
+            )}
           </div>
         ))}
     </div>

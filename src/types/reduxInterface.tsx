@@ -9,7 +9,12 @@ export interface reduxStore {
       canvases: {}[];
       participants: {}[];
       onlineParticipants: {}[];
-      chatHistory: { sender: string; text: string; createdAt: string }[];
+      chatHistory: {
+        sender: string;
+        text: string;
+        createdAt: string;
+        attachment: string;
+      }[];
       name: string;
       images: string;
     }[];
@@ -25,7 +30,12 @@ export interface reduxStore {
     canvases: {}[];
     participants: {}[];
     onlineParticipants: {}[];
-    chatHistory: { sender: string; text: string; createdAt: string }[];
+    chatHistory: {
+      sender: string;
+      text: string;
+      createdAt: string;
+      attachment: string;
+    }[];
     name: string;
     _id: string;
     images: string;
@@ -46,4 +56,5 @@ export interface individualMessage {
   sender: string;
   text: string;
   createdAt: string;
+  attachment: string;
 }
