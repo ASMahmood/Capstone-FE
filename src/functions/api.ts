@@ -130,7 +130,7 @@ export const fetchRoom = async (
   }
 };
 
-export const uploadAttachment = async (file: any): Promise<string> => {
+export const uploadAttachment = async (file: File): Promise<string> => {
   try {
     let formData = new FormData();
     formData.append("file", file);

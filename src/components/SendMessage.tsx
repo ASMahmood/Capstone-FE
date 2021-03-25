@@ -21,9 +21,19 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
 function SendMessage(props: sendMessageProps) {
   const [text, setText] = useState<string>("");
+  const [attachment, setAttachment] = useState<File>();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (attachment !== undefined) {
+      //SEND ATTTACHEMT
+      //SEND MESSAGE
+    } else {
+      sendMessage();
+    }
+  };
+
+  const sendMessage = () => {
     const message = {
       sender: props.user.username,
       text: text,
@@ -37,14 +47,28 @@ function SendMessage(props: sendMessageProps) {
   return (
     <div className="mb-4">
       <Form onSubmit={handleSubmit}>
-        <Form.Control
-          type="text"
-          value={text}
-          onChange={(e) => setText(e.currentTarget.value)}
-        />
-        <Button type="submit" variant="warning">
-          SEND
-        </Button>
+        <Form.Group>
+          <Form.Control
+            type="text"
+            value={text}
+            onChange={(e) => setText(e.currentTarget.value)}
+          />
+          <Button type="submit" variant="warning">
+            SEND
+          </Button>
+        </Form.Group>
+        <Form.Group className="position-relative">
+          <Form.Label htmlFor="attach">ATTACH</Form.Label>
+          <Form.Control
+            type="file"
+            id="attach"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              if (e.currentTarget.files !== null) {
+                setAttachment(e.currentTarget.files[0]);
+              }
+            }}
+          />
+        </Form.Group>
       </Form>
     </div>
   );
