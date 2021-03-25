@@ -129,3 +129,24 @@ export const fetchRoom = async (
     return { message: "room fetch failed :(" };
   }
 };
+
+export const uploadAttachment = async (file: any): Promise<string> => {
+  try {
+    let formData = new FormData();
+    formData.append("file", file);
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/files/upload`,
+      {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        credentials: "include",
+        body: formData,
+      }
+    );
+    const parsedResp = await response.json();
+    return parsedResp.message;
+  } catch (error) {
+    console.log(error);
+    return "";
+  }
+};
