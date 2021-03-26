@@ -11,7 +11,7 @@ const connOpt = {
   transports: ["websocket"],
 };
 
-let socket = io("http://localhost:3333", connOpt);
+let socket = io(process.env.REACT_APP_BACKEND_URL as string, connOpt);
 
 export const joinRoom = (data: joinLeaveRoomSocketData) => {
   socket.emit("JOIN_ROOM", data);
