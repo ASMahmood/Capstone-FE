@@ -1,4 +1,5 @@
 #globalStyle {
-  background-color: #282c34;
+  background-color: rgb(114, 114, 114);
   min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
