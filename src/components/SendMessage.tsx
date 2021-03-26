@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { sendChat } from "../functions/socket";
 import { uploadAttachment } from "../functions/api";
@@ -7,6 +7,7 @@ import { Dispatch } from "redux";
 import { chatMessage } from "../types/otherInterfaces";
 import { reduxStore, individualMessage } from "../types/reduxInterface";
 import { messageDispatch } from "../types/dispatchInterfaces";
+import "./styles/SendMessage.css";
 
 type sendMessageProps = reduxStore & messageDispatch;
 
@@ -49,30 +50,40 @@ function SendMessage(props: sendMessageProps) {
   };
 
   return (
-    <div className="mb-4">
+    <div className="mb-4 sendMessageComponent">
       <Form onSubmit={handleSubmit}>
-        <Form.Group>
-          <Form.Control
-            type="text"
-            value={text}
-            onChange={(e) => setText(e.currentTarget.value)}
-          />
-          <Button type="submit" variant="warning">
-            SEND
-          </Button>
-        </Form.Group>
-        <Form.Group className="position-relative">
-          <Form.Label htmlFor="attach">ATTACH</Form.Label>
-          <Form.Control
-            type="file"
-            id="attach"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              if (e.currentTarget.files !== null) {
-                setAttachment(e.currentTarget.files[0]);
-              }
-            }}
-          />
-        </Form.Group>
+        <Form.Row>
+          <Col xs={12}>
+            <Form.Group>
+              <Form.Control
+                type="text"
+                value={text}
+                onChange={(e) => setText(e.currentTarget.value)}
+              />
+            </Form.Group>
+          </Col>
+        </Form.Row>
+        <Form.Row>
+          <Col xs={6}>
+            <Button type="submit" variant="secondary">
+              SEND
+            </Button>
+          </Col>
+          <Col xs={6}>
+            <Form.Group className="position-relative">
+              <Form.Label htmlFor="attach">ATTACH</Form.Label>
+              <Form.Control
+                type="file"
+                id="attach"
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  if (e.currentTarget.files !== null) {
+                    setAttachment(e.currentTarget.files[0]);
+                  }
+                }}
+              />
+            </Form.Group>
+          </Col>
+        </Form.Row>
       </Form>
     </div>
   );
