@@ -2,10 +2,10 @@
   z-index: 20;
   position: absolute;
   right: 0;
-  bottom: -30px;
-  width: 250px;
+  bottom: -50px;
+  width: 350px;
   padding: 5px;
-  border: 1px solid black;
-  border-radius: 15px;
+  border: 1px solid rgb(114, 114, 114);
+  border-radius: 10px;
   background-color: white;
 }
