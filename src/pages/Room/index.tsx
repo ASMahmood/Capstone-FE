@@ -9,6 +9,7 @@ import WhiteBoard from "../../components/WhiteBoard";
 import WhiteBoardOption from "../../components/WhiteBoardOptions";
 import ChatList from "../../components/ChatList";
 import SendMessage from "../../components/SendMessage";
+import InviteUsers from "../../components/InviteUsers";
 
 const mapStateToProps = (state: reduxStore) => state;
 
@@ -28,7 +29,7 @@ function RoomPage(props: reduxStore) {
         <Col xs={12} className="roomNavTop d-flex align-items-center">
           <h2 className="m-0">{props.room.name} </h2>
           <h5 className="ml-3"> {props.room.participants.length} members</h5>
-          <AiOutlineUserAdd className="ml-auto" fontSize="30" />
+          <InviteUsers />
         </Col>
       </Row>
       <Row className="mt-4">
