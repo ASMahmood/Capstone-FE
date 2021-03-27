@@ -6,6 +6,15 @@ import "./styles/InviteUser.css";
 function InviteUsers() {
   const [show, setShow] = useState<boolean>(false);
   const [email, setEmail] = useState<string>("");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <AiOutlineUserAdd
@@ -14,9 +23,14 @@ function InviteUsers() {
         onClick={() => (show ? setShow(false) : setShow(true))}
       />
       <div id="addUserbox" className={show ? "" : "d-none"}>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <InputGroup>
-            <Form.Control type="text" placeholder="Email of user..." />
+            <Form.Control
+              type="text"
+              placeholder="Email of user..."
+              value={email}
+              onChange={(e) => setEmail(e.currentTarget.value)}
+            />
             <InputGroup.Append>
               <Button type="submit" variant="secondary">
                 ADD

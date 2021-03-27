@@ -151,12 +151,21 @@ export const uploadAttachment = async (file: File): Promise<string> => {
   }
 };
 
-// export const downloadAttachment = async (filename: string): Promise<void> => {
-//   try {
-//     await fetch(`${process.env.REACT_APP_BACKEND_URL}/files/${filename}`, {
-//       credentials: "include",
-//     });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+export const sendEmailInvite = async (
+  email: string,
+  roomId: string
+): Promise<singleMessageResponse> => {
+  try {
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/rooms/${roomId}`,
+      {
+        credentials: "include",
+      }
+    );
+    const parsedResp = await response.json();
+    return parsedResp;
+  } catch (error) {
+    console.log(error);
+    return { message: "glitch in the matrix" };
+  }
+};
