@@ -1,15 +1,23 @@
 import React, { useState } from "react";
 import { Form, Button, InputGroup } from "react-bootstrap";
 import { AiOutlineUserAdd } from "react-icons/ai";
+import { connect } from "react-redux";
+import { sendEmailInvite } from "../functions/api";
+import { reduxStore } from "../types/reduxInterface";
 import "./styles/InviteUser.css";
 
-function InviteUsers() {
+const mapStateToProps = (state: reduxStore) => state;
+
+function InviteUsers(props: reduxStore) {
   const [show, setShow] = useState<boolean>(false);
   const [email, setEmail] = useState<string>("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
+      let status = await sendEmailInvite(email, props.room._id);
+      setEmail("");
+      console.log(status);
     } catch (error) {
       console.log(error);
     }
@@ -43,4 +51,4 @@ function InviteUsers() {
   );
 }
 
-export default InviteUsers;
+export default connect(mapStateToProps)(InviteUsers);

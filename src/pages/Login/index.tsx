@@ -30,7 +30,7 @@ export default function Login(props: RouteComponentProps) {
     console.log(response);
     if (response.message === "user registered!") {
       setExtra(false);
-      props.history.push("/");
+      props.history.push("/login");
     }
   };
 

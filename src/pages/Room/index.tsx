@@ -3,18 +3,45 @@ import "./style.css";
 import { Container, Row, Col } from "react-bootstrap";
 import { AiOutlineUserAdd } from "react-icons/ai";
 import { connect } from "react-redux";
+import { RouteComponentProps, withRouter } from "react-router-dom";
+import { Dispatch } from "redux";
 import { reduxStore } from "../../types/reduxInterface";
+import { populateRoomDispatch } from "../../types/dispatchInterfaces";
+import { MatchParams } from "../../types/routerDomInterfaces";
 import { leaveRoom } from "../../functions/socket";
+import { fetchRoom } from "../../functions/api";
 import WhiteBoard from "../../components/WhiteBoard";
 import WhiteBoardOption from "../../components/WhiteBoardOptions";
 import ChatList from "../../components/ChatList";
 import SendMessage from "../../components/SendMessage";
 import InviteUsers from "../../components/InviteUsers";
 
+type roomProps = reduxStore &
+  populateRoomDispatch &
+  RouteComponentProps<MatchParams>;
+
 const mapStateToProps = (state: reduxStore) => state;
 
-function RoomPage(props: reduxStore) {
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  populateRoom: (room: object) =>
+    dispatch({
+      type: "POPULATE_ROOM",
+      payload: room,
+    }),
+});
+
+function RoomPage(props: roomProps) {
   useEffect(() => {
+    console.log(props.location.search);
+    const getAndPopulate = async (id: string) => {
+      const response = await fetchRoom(id);
+      if (Object.keys(response).length > 1) {
+        await props.populateRoom(response);
+      } else {
+        console.log("error! in da matrix");
+      }
+    };
+    getAndPopulate(props.match.params.id);
     return () => {
       leaveRoom({
         roomId: props.room._id,
@@ -46,4 +73,4 @@ function RoomPage(props: reduxStore) {
   );
 }
 
-export default connect(mapStateToProps)(RoomPage);
+export default connect(mapStateToProps, mapDispatchToProps)(RoomPage);

@@ -75,7 +75,13 @@ export const createRoomFetch = async (
   try {
     const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/rooms`, {
       method: "POST",
-      body: JSON.stringify({ name: name }),
+      body: JSON.stringify({
+        name: name,
+        chatHistory: [],
+        participants: [],
+        onlineParticipants: [],
+        images: "",
+      }),
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
@@ -157,9 +163,14 @@ export const sendEmailInvite = async (
 ): Promise<singleMessageResponse> => {
   try {
     const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_URL}/rooms/${roomId}`,
+      `${process.env.REACT_APP_BACKEND_URL}/rooms/addrequest/${roomId}`,
       {
+        method: "POST",
+        body: JSON.stringify({ email: email }),
         credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
       }
     );
     const parsedResp = await response.json();
