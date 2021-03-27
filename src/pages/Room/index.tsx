@@ -32,7 +32,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
 function RoomPage(props: roomProps) {
   useEffect(() => {
-    console.log(props.location.search);
+    let searchParams = new URLSearchParams(props.location.search);
+    console.log(searchParams.get("join"));
     const getAndPopulate = async (id: string) => {
       const response = await fetchRoom(id);
       if (Object.keys(response).length > 1) {
