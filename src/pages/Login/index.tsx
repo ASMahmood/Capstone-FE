@@ -31,9 +31,12 @@ export default function Login(props: RouteComponentProps) {
     if (response.message === "user registered!") {
       if (image !== undefined) {
         await setProfilePic(response.message, image);
+        setExtra(false);
+        props.history.push("/login");
+      } else {
+        setExtra(false);
+        props.history.push("/login");
       }
-      setExtra(false);
-      props.history.push("/login");
     }
   };
 

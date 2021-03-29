@@ -104,28 +104,27 @@ function RoomPage(props: roomProps) {
         </Col>
       </Row>
       <Row className="mt-4">
-        {joining ? (
+        {joining && (
           <Col
             xs={12}
             className="whiteBoard p-3 d-flex justify-content-center align-items-center text-center"
           >
             <h1>Please join this room to see its contents</h1>
           </Col>
-        ) : (
-          <>
-            <Col xs={9} className="whiteBoard">
-              <WhiteBoard />
-              <WhiteBoardOption />
-            </Col>
-            <Col
-              xs={3}
-              className="chatBox d-flex flex-column justify-content-end"
-            >
-              <ChatList />
-              <SendMessage />
-            </Col>
-          </>
         )}
+        <>
+          <Col xs={9} className="whiteBoard">
+            <WhiteBoard />
+            <WhiteBoardOption />
+          </Col>
+          <Col
+            xs={3}
+            className="chatBox d-flex flex-column justify-content-end"
+          >
+            <ChatList />
+            <SendMessage />
+          </Col>
+        </>
       </Row>
     </Container>
   );
