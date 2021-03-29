@@ -13,14 +13,14 @@ function UserBox(props: reduxStore) {
   };
 
   return (
-    <div className="userInfo">
+    <div className="userInfo w-100 h-100 d-flex align-items-center justify-content-left">
       <Form>
         <Form.Group>
           <Form.Label htmlFor="ProfilePicSelector">
             <img
               src={props.user.profilePic}
               alt="profile"
-              className="homePagePic"
+              className="homePagePic mx-4"
             />
           </Form.Label>
           <Form.Control

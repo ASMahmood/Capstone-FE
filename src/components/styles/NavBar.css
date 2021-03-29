@@ -1,5 +1,6 @@
 .navbar {
   background-color: rgb(216, 216, 216);
+  box-shadow: 0 8px 6px -6px black;
 }
 .navbar .btn {
   padding: 0.3rem;
