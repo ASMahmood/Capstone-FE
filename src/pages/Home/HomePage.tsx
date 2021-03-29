@@ -11,6 +11,7 @@ import { populateUserDispatch } from "../../types/dispatchInterfaces";
 import UserBox from "../../components/UserBox";
 import CreateRoom from "../../components/CreateRoom";
 import RoomList from "../../components/RoomList";
+import FriendList from "../../components/FriendList";
 
 type homePageProps = reduxStore & RouteComponentProps & populateUserDispatch;
 
@@ -69,8 +70,7 @@ function HomePage(props: homePageProps) {
               xs={6}
               className="friendList d-flex justify-content-center align-items-center"
             >
-              {" "}
-              <h3>FRIEND LIST</h3>
+              <FriendList />
             </Col>
             <Col
               xs={5}

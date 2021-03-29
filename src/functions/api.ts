@@ -180,3 +180,50 @@ export const sendEmailInvite = async (
     return { message: "glitch in the matrix" };
   }
 };
+
+export const editProfilePic = async (
+  pic: File
+): Promise<singleMessageResponse> => {
+  try {
+    let formData = new FormData();
+    formData.append("ProfilePic", pic);
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/users/me/upload`,
+      {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        credentials: "include",
+        body: formData,
+      }
+    );
+    const parsedResp = await response.json();
+    return parsedResp;
+  } catch (error) {
+    console.log(error);
+    return { message: "Error editing profile pic" };
+  }
+};
+
+export const setProfilePic = async (
+  userId: string,
+  pic: File
+): Promise<singleMessageResponse> => {
+  try {
+    let formData = new FormData();
+    formData.append("ProfilePic", pic);
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/users/${userId}/upload`,
+      {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        credentials: "include",
+        body: formData,
+      }
+    );
+    const parsedResp = await response.json();
+    return { message: "Success setting profile pic" };
+  } catch (error) {
+    console.log(error);
+    return { message: "Error setting profile pic" };
+  }
+};

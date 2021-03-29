@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import "./style.css";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { loginUser, registerUser } from "../../functions/api";
+import { loginUser, registerUser, setProfilePic } from "../../functions/api";
 import { RouteComponentProps } from "react-router-dom";
 
 export default function Login(props: RouteComponentProps) {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [username, setUsername] = useState<string>("");
-  const [image, setImage] = useState<object>();
+  const [image, setImage] = useState<File>();
   const [extraInfo, setExtra] = useState<boolean>(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -29,8 +29,14 @@ export default function Login(props: RouteComponentProps) {
     const response = await registerUser(email, password, username);
     console.log(response);
     if (response.message === "user registered!") {
-      setExtra(false);
-      props.history.push("/login");
+      if (image !== undefined) {
+        await setProfilePic(response.message, image);
+        setExtra(false);
+        props.history.push("/login");
+      } else {
+        setExtra(false);
+        props.history.push("/login");
+      }
     }
   };
 

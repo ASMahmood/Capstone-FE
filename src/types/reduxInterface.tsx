@@ -3,7 +3,7 @@ export interface reduxStore {
     _id: string;
     email: string;
     username: string;
-    friends: {}[];
+    associates: {}[];
     rooms: {
       _id: string;
       canvases: {}[];
