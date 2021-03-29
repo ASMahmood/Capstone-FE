@@ -190,7 +190,7 @@ export const editProfilePic = async (
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_URL}/users/me/upload`,
       {
-        method: "POST",
+        method: "PUT",
         headers: { Accept: "application/json" },
         credentials: "include",
         body: formData,
@@ -214,7 +214,7 @@ export const setProfilePic = async (
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_URL}/users/${userId}/upload`,
       {
-        method: "POST",
+        method: "PUT",
         headers: { Accept: "application/json" },
         credentials: "include",
         body: formData,
