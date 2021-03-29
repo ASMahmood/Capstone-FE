@@ -7,6 +7,8 @@ import "./styles/UserBox.css";
 const mapStateToProps = (state: reduxStore) => state;
 
 function UserBox(props: reduxStore) {
+  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {};
+
   return (
     <div className="userInfo">
       <Form>
@@ -19,6 +21,7 @@ function UserBox(props: reduxStore) {
             accept="image/*"
             id="ProfilePicSelector"
             className="filePickerInput"
+            onChange={(e) => handleChange(e)}
           />
         </Form.Group>
       </Form>
