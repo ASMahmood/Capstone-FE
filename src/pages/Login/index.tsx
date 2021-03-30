@@ -44,9 +44,9 @@ export default function Login(props: RouteComponentProps) {
     <Container className="loginBody">
       <Row>
         <Col xs={12} className="centerForm">
-          <h2 className="loginTitle mt-2 text-center">
+          <h4 className="loginTitle mt-2 text-center">
             {extraInfo ? "New Here?" : "Welcome Back"}
-          </h2>
+          </h4>
           {extraInfo && (
             <h6 className="loginSubTitle mt-2 text-center">
               Lets make you an account!
@@ -124,7 +124,11 @@ export default function Login(props: RouteComponentProps) {
                 xs={extraInfo ? 6 : 12}
                 className="d-flex justify-content-center"
               >
-                <Button type="submit" variant="outline-warning">
+                <Button
+                  type="submit"
+                  className="loginPageButton"
+                  variant="outline-warning"
+                >
                   {extraInfo ? "ATTEMPT LOGIN AGAIN" : "LOGIN"}
                 </Button>
               </Col>

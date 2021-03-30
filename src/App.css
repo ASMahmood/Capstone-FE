@@ -1,5 +1,16 @@
 #globalStyle {
-  background-color: rgb(216, 216, 216);
-  min-height: 100vh;
+  background-color: #e5e5f7;
+  opacity: 0.4;
+  background-image: repeating-radial-gradient(
+      circle at 0 0,
+      transparent 0,
+      #e5e5f7 30px
+    ),
+    repeating-linear-gradient(#577d0655, #577d06);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
