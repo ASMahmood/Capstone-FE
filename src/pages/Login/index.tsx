@@ -120,10 +120,7 @@ export default function Login(props: RouteComponentProps) {
               </>
             )}
             <Form.Group as={Row}>
-              <Col
-                xs={extraInfo ? 6 : 12}
-                className="d-flex justify-content-center"
-              >
+              <Col xs={6} className="d-flex justify-content-center">
                 <Button
                   type="submit"
                   className="loginPageButton"
@@ -132,16 +129,20 @@ export default function Login(props: RouteComponentProps) {
                   {extraInfo ? "ATTEMPT LOGIN AGAIN" : "LOGIN"}
                 </Button>
               </Col>
-              {extraInfo && (
-                <Col xs={6} className="d-flex justify-content-center">
-                  <Button
-                    onClick={handleRegisterSubmit}
-                    variant="outline-warning"
-                  >
-                    REGISTER NEW USER
-                  </Button>
-                </Col>
-              )}
+
+              <Col
+                xs={6}
+                className="d-flex loginPageButton justify-content-center"
+              >
+                <Button
+                  onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+                    extraInfo ? handleRegisterSubmit(e) : setExtra(true)
+                  }
+                  variant="outline-warning"
+                >
+                  REGISTER
+                </Button>
+              </Col>
             </Form.Group>
           </Form>
         </Col>
