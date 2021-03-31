@@ -10,9 +10,9 @@ export default function Login(props: RouteComponentProps) {
   const [username, setUsername] = useState<string>("");
   const [image, setImage] = useState<File>();
   const [extraInfo, setExtra] = useState<boolean>(false);
+  const [validated, setValidated] = useState<boolean>(false);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const loginRequest = async () => {
     const response = await loginUser(email, password);
     console.log(response);
     if (response.message === "logged in") {
@@ -22,10 +22,7 @@ export default function Login(props: RouteComponentProps) {
     }
   };
 
-  const handleRegisterSubmit = async (
-    e: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    e.preventDefault();
+  const registerRequest = async () => {
     const response = await registerUser(email, password, username);
     console.log(response);
     if (response.message === "user registered!") {
@@ -40,6 +37,28 @@ export default function Login(props: RouteComponentProps) {
     }
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.stopPropagation();
+    } else {
+      loginRequest();
+    }
+    setValidated(true);
+  };
+
+  const handleRegisterSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.stopPropagation();
+    } else {
+      registerRequest();
+    }
+    setValidated(true);
+  };
+
   return (
     <Container className="loginBody">
       <Row>
@@ -52,13 +71,19 @@ export default function Login(props: RouteComponentProps) {
               Lets make you an account!
             </h6>
           )}
-          <Form className="mt-4" onSubmit={handleSubmit}>
+          <Form
+            className="mt-4"
+            onSubmit={handleSubmit}
+            noValidate
+            validated={validated}
+          >
             <Form.Group as={Row}>
               <Form.Label column xs="12" sm="2" className="text-center  pr-0">
                 Email
               </Form.Label>
               <Col xs={12} sm={9}>
                 <Form.Control
+                  required
                   type="text"
                   autoComplete="off"
                   value={email}
@@ -73,12 +98,17 @@ export default function Login(props: RouteComponentProps) {
               </Form.Label>
               <Col xs={12} sm={9}>
                 <Form.Control
+                  required
                   type="password"
                   autoComplete="off"
+                  minLength={8}
                   value={password}
                   onChange={(e) => setPassword(e.currentTarget.value)}
                   placeholder="Please use at least 9 characters. We won't force you though."
                 />
+                <Form.Control.Feedback type="invalid">
+                  Password needs to be at least 8 characters!
+                </Form.Control.Feedback>
               </Col>
             </Form.Group>
             {extraInfo && (
@@ -94,6 +124,7 @@ export default function Login(props: RouteComponentProps) {
                   </Form.Label>
                   <Col xs={12} sm={9}>
                     <Form.Control
+                      required
                       type="text"
                       autoComplete="off"
                       value={username}
@@ -107,6 +138,7 @@ export default function Login(props: RouteComponentProps) {
                     Profile Picture
                   </Form.Label>
                   <Form.File
+                    required
                     accept="image/*"
                     id="loginPicSelector"
                     className="d-none"
