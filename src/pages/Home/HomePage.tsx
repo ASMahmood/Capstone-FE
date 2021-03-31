@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { RouteComponentProps } from "react-router-dom";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import "./HomePage.css";
-import { fetchMe } from "../../functions/api";
+import { fetchMe, fetchRandomMeme } from "../../functions/api";
 import { fetchUserInfo } from "../../functions/other";
 import { reduxStore } from "../../types/reduxInterface";
 import { populateUserDispatch } from "../../types/dispatchInterfaces";
@@ -26,6 +26,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 });
 
 function HomePage(props: homePageProps) {
+  const [img, setImg] = useState<string>("");
+
   useEffect(() => {
     const checkIfOnline = async () => {
       const response = await fetchUserInfo();
@@ -37,7 +39,14 @@ function HomePage(props: homePageProps) {
       }
     };
     checkIfOnline();
+    fetchAndAssignImg();
   }, []);
+
+  const fetchAndAssignImg = async () => {
+    let source = await fetchRandomMeme();
+    console.log(source);
+    setImg(source);
+  };
 
   return (
     <Container className="homeBody">
@@ -72,12 +81,12 @@ function HomePage(props: homePageProps) {
             >
               <FriendList />
             </Col>
-            <Col
-              xs={5}
-              className="randoMeme ml-4 d-flex justify-content-center align-items-center text-center"
-            >
-              {" "}
-              <h3>RANDOM MEME OR FACT</h3>
+            <Col xs={6} className="pr-0">
+              <div className="randoMeme d-flex justify-content-center align-items-center text-center">
+                {img && (
+                  <img src={img} alt="randomMeme" className="randoMemeImg" />
+                )}
+              </div>
             </Col>
           </Row>
         </Col>

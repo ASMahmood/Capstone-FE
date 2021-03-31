@@ -49,3 +49,10 @@
   height: 325px;
   border-radius: 12px;
 }
+
+.randoMemeImg {
+  width: 95%;
+  height: 95%;
+  border-radius: 12px;
+  object-fit: contain;
+}

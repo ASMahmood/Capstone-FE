@@ -250,3 +250,13 @@ export const editProfileFetch = async (
     return { message: "Error setting profile pic" };
   }
 };
+
+export const fetchRandomMeme = async () => {
+  try {
+    const response = await fetch("https://meme-api.herokuapp.com/gimme");
+    const parsedResp = await response.json();
+    return parsedResp.url;
+  } catch (error) {
+    console.log(error);
+  }
+};
