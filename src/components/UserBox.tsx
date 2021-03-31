@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import { connect } from "react-redux";
-import { AiOutlineEdit } from "react-icons/ai";
+import { AiOutlineEdit, AiOutlineSend } from "react-icons/ai";
 import { reduxStore } from "../types/reduxInterface";
+import { editProfileFetch } from "../functions/api";
 import { editProfilePic } from "../functions/api";
 import "./styles/UserBox.css";
 
@@ -60,6 +61,14 @@ function UserBox(props: reduxStore) {
             className="ml-3 editIcon"
             onClick={() => (editProfile ? setEdit(false) : setEdit(true))}
           />
+          {editProfile ? (
+            <AiOutlineSend
+              className="ml-3 editIcon"
+              onClick={() => editProfileFetch(username)}
+            />
+          ) : (
+            <></>
+          )}
         </h3>
       </div>
     </div>
