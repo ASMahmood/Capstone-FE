@@ -1,46 +1,51 @@
 .homeBody {
   margin-top: 5rem;
-  color: #577d06;
+  color: #ffffff;
   max-width: 1000px;
   opacity: 1;
 }
 
 .userBox {
-  background-color: #10170127;
-  box-shadow: 0 20px 6px -6px rgba(49, 49, 49, 0.295);
+  background-color: #11132e33;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 6px -6px rgba(49, 49, 49, 0.295);
   width: 100%;
   height: 300px;
-  border-radius: 25px;
+  border-radius: 12px;
 }
 
 .roomList {
-  background-color: #10170127;
-  box-shadow: 0 20px 6px -6px rgba(49, 49, 49, 0.295);
+  background-color: #11132e33;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 6px -6px rgba(49, 49, 49, 0.295);
   width: 100%;
   height: 500px;
-  border-radius: 25px;
+  border-radius: 12px;
 }
 
 .createRoom {
-  background-color: #10170127;
-  box-shadow: 0 20px 6px -6px rgba(49, 49, 49, 0.295);
+  background-color: #11132e33;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 6px -6px rgba(49, 49, 49, 0.295);
   width: 100%;
   height: 150px;
-  border-radius: 25px;
+  border-radius: 12px;
 }
 
 .friendList {
-  background-color: #10170127;
-  box-shadow: 0 20px 6px -6px rgba(49, 49, 49, 0.295);
+  background-color: #11132e33;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 6px -6px rgba(49, 49, 49, 0.295);
   width: 100%;
   height: 325px;
-  border-radius: 25px;
+  border-radius: 12px;
 }
 
 .randoMeme {
-  background-color: #10170127;
-  box-shadow: 0 20px 6px -6px rgba(49, 49, 49, 0.295);
+  background-color: #11132e33;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 6px -6px rgba(49, 49, 49, 0.295);
   width: 100%;
   height: 325px;
-  border-radius: 25px;
+  border-radius: 12px;
 }

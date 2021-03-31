@@ -1,12 +1,11 @@
 #globalStyle {
-  background-color: #e5e5f7;
-
+  background-color: #3d3e50;
   background-image: repeating-radial-gradient(
       circle at 0 0,
       transparent 0,
-      #e5e5f785 30px
+      #3d3e5085 100px
     ),
-    repeating-linear-gradient(#577d0631, #577d0679);
+    repeating-linear-gradient(#45457980, #45457946);
   top: 0;
   bottom: 0;
   left: 0;

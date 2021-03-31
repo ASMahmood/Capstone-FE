@@ -41,7 +41,9 @@ function RoomList(props: roomListProps) {
               className="roomListing"
               onClick={() => handleClick(room._id)}
             >
-              {room.name} - {room.participants.length} members
+              <h5>{room.name}</h5>
+              {room.participants.length} member
+              {room.participants.length > 1 && "s"}
             </ListGroup.Item>
           ))
         ) : (

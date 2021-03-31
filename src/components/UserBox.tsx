@@ -34,6 +34,7 @@ function UserBox(props: userBoxProps) {
     let updatedUser = await editProfileFetch(username);
     await props.populateUser(updatedUser);
     setEdit(false);
+    setUsername(props.user.username);
   };
 
   return (

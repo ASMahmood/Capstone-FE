@@ -40,8 +40,8 @@
 }
 
 .loginPageButton {
-  border-color: #577d06;
-  color: #577d06;
+  border-color: #ffffff;
+  color: #ffffff;
   font-weight: 500;
 }
 
@@ -52,10 +52,14 @@
 }
 
 input.form-control {
-  border: 1px solid #577d06;
-  background-color: #f0f1ec44;
+  border: 1px solid #ffffff;
+  background-color: #ffffff44;
 }
 
 input.form-control:focus {
   box-shadow: none;
+}
+
+input.form-control::placeholder {
+  color: #fff;
 }
