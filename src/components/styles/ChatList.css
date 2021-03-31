@@ -48,4 +48,5 @@
 .attachmentDiv {
   font-size: 10px;
   text-align: center;
+  cursor: pointer;
 }

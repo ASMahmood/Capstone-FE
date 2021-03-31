@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import {} from "react-bootstrap";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
+import { AiOutlineCloudDownload } from "react-icons/ai";
 import { listenChat } from "../functions/socket";
 import { convertTime } from "../functions/other";
 import { chatMessage } from "../types/otherInterfaces";
@@ -53,6 +54,7 @@ function ChatList(props: chatListProps) {
                   )
                 }
               >
+                <AiOutlineCloudDownload fontSize={35} />
                 {message.attachment}
               </div>
             )}
