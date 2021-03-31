@@ -21,6 +21,8 @@
   box-shadow: 0 10px 6px -6px rgba(49, 49, 49, 0.295);
   border-radius: 12px;
   color: #fff !important;
+  height: 70px;
+  width: 70px;
 }
 
 .navDiv > .nav-link {
