@@ -84,12 +84,15 @@ export default function Login(props: RouteComponentProps) {
               <Col xs={12} sm={9}>
                 <Form.Control
                   required
-                  type="text"
+                  type="email"
                   autoComplete="off"
                   value={email}
                   onChange={(e) => setEmail(e.currentTarget.value)}
                   placeholder="SoulMan69@aol.jp"
                 />
+                <Form.Control.Feedback type="invalid">
+                  This needs to be a valid email address!
+                </Form.Control.Feedback>
               </Col>
             </Form.Group>
             <Form.Group as={Row}>

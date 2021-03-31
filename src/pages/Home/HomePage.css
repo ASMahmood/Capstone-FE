@@ -1,39 +1,45 @@
 .homeBody {
   margin-top: 5rem;
-  color: rgb(241, 200, 63);
+  color: #577d06;
+  max-width: 1000px;
   opacity: 1;
 }
 
 .userBox {
-  background-color: rgb(199, 47, 47);
+  background-color: #10170127;
+  box-shadow: 0 20px 6px -6px rgba(49, 49, 49, 0.295);
   width: 100%;
   height: 300px;
   border-radius: 25px;
 }
 
 .roomList {
-  background-color: rgb(37, 155, 76);
+  background-color: #10170127;
+  box-shadow: 0 20px 6px -6px rgba(49, 49, 49, 0.295);
   width: 100%;
   height: 500px;
   border-radius: 25px;
 }
 
 .createRoom {
-  background-color: rgb(49, 37, 155);
+  background-color: #10170127;
+  box-shadow: 0 20px 6px -6px rgba(49, 49, 49, 0.295);
   width: 100%;
   height: 150px;
   border-radius: 25px;
 }
 
 .friendList {
-  background-color: rgb(129, 20, 120);
+  background-color: #10170127;
+  box-shadow: 0 20px 6px -6px rgba(49, 49, 49, 0.295);
   width: 100%;
   height: 325px;
   border-radius: 25px;
 }
 
 .randoMeme {
-  background-color: rgb(12, 106, 129);
+  background-color: #10170127;
+  box-shadow: 0 20px 6px -6px rgba(49, 49, 49, 0.295);
   width: 100%;
   height: 325px;
   border-radius: 25px;
