@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import { connect } from "react-redux";
+import { AiOutlineEdit } from "react-icons/ai";
 import { reduxStore } from "../types/reduxInterface";
 import { editProfilePic } from "../functions/api";
 import "./styles/UserBox.css";
@@ -39,7 +40,7 @@ function UserBox(props: reduxStore) {
         </Form.Group>
       </Form>
       <div className="textBox align-content-top">
-        <h3>Hello there, {props.user.username}</h3>
+        <h3 className="mt-3">Hello there, {props.user.username}</h3>
       </div>
     </div>
   );
