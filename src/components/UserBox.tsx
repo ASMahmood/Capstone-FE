@@ -1,20 +1,39 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
+import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { AiOutlineEdit, AiOutlineSend } from "react-icons/ai";
 import { reduxStore } from "../types/reduxInterface";
+import { populateUserDispatch } from "../types/dispatchInterfaces";
 import { editProfileFetch } from "../functions/api";
 import { editProfilePic } from "../functions/api";
 import "./styles/UserBox.css";
 
+type userBoxProps = reduxStore & populateUserDispatch;
+
 const mapStateToProps = (state: reduxStore) => state;
 
-function UserBox(props: reduxStore) {
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  populateUser: (user: object) =>
+    dispatch({
+      type: "POPULATE_USER",
+      payload: user,
+    }),
+});
+
+function UserBox(props: userBoxProps) {
   const [editProfile, setEdit] = useState<boolean>(false);
   const [username, setUsername] = useState<string>(props.user.username);
 
   const handleChange = async (image: File) => {
-    await editProfilePic(image);
+    let updatedUser = await editProfilePic(image);
+    props.populateUser(updatedUser);
+  };
+
+  const handleUsername = async () => {
+    let updatedUser = await editProfileFetch(username);
+    await props.populateUser(updatedUser);
+    setEdit(false);
   };
 
   return (
@@ -64,7 +83,7 @@ function UserBox(props: reduxStore) {
           {editProfile ? (
             <AiOutlineSend
               className="ml-3 editIcon"
-              onClick={() => editProfileFetch(username)}
+              onClick={() => handleUsername()}
             />
           ) : (
             <></>
@@ -75,4 +94,4 @@ function UserBox(props: reduxStore) {
   );
 }
 
-export default connect(mapStateToProps)(UserBox);
+export default connect(mapStateToProps, mapDispatchToProps)(UserBox);
