@@ -6,3 +6,14 @@
   width: 1px;
   height: 1px;
 }
+
+.sendChatButton {
+  border-color: #ffffff;
+  color: #ffffff;
+  font-weight: 500;
+}
+.sendChatButton:hover {
+  background-color: #0c0d0a;
+  color: #383d81c4;
+  border: #383d81c4;
+}

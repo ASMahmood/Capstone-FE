@@ -65,13 +65,19 @@ function SendMessage(props: sendMessageProps) {
         </Form.Row>
         <Form.Row>
           <Col xs={6}>
-            <Button type="submit" variant="secondary">
+            <Button
+              type="submit"
+              variant="outline-secondary"
+              className="sendChatButton"
+            >
               SEND
             </Button>
           </Col>
           <Col xs={6}>
             <Form.Group className="position-relative">
-              <Form.Label htmlFor="attach">ATTACH</Form.Label>
+              <Form.Label htmlFor="attach" className="attachChatButton">
+                ATTACH
+              </Form.Label>
               <Form.Control
                 type="file"
                 id="attach"

@@ -45,6 +45,7 @@ function ChatList(props: chatListProps) {
             <div>{message.text}</div>
             {message.attachment && message.attachment !== "null" && (
               <div
+                className="attachmentDiv"
                 onClick={() =>
                   window.open(
                     `${process.env.REACT_APP_BACKEND_URL}/files/${message.attachment}`,

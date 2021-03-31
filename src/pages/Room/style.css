@@ -30,7 +30,8 @@
   background-color: #11132e33;
   backdrop-filter: blur(8px);
   box-shadow: 0 10px 6px -6px rgba(49, 49, 49, 0.295);
-  width: 100%;
+  max-width: 250px;
+  min-width: 180px;
   height: 80vh;
   border-radius: 12px;
   padding: 0px 0px 0px 5px;

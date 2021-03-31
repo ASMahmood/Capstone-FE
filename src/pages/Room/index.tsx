@@ -113,17 +113,14 @@ function RoomPage(props: roomProps) {
           </Col>
         )}
         <>
-          <Col xs={9} className="whiteBoard">
+          <Col className="whiteBoard">
             <WhiteBoard />
             <WhiteBoardOption />
           </Col>
-          <Col
-            xs={3}
-            className="chatBox d-flex flex-column justify-content-end"
-          >
+          <div className="chatBox d-flex flex-column justify-content-end">
             <ChatList />
             <SendMessage />
-          </Col>
+          </div>
         </>
       </Row>
     </Container>
