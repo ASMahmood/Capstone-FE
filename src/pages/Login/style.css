@@ -4,11 +4,13 @@
   font-size: 18px;
   padding-left: 5vw;
   padding-right: 5vw;
+  margin-top: 25vh;
+  max-width: 1000px;
   opacity: 1;
 }
 
 .centerForm {
-  background-color: #101701;
+  background-color: #10170127;
   box-shadow: 0 20px 6px -6px rgba(49, 49, 49, 0.295);
   width: 100%;
   height: auto;
@@ -41,4 +43,10 @@
   border-color: #577d06;
   color: #577d06;
   font-weight: 500;
+}
+
+.loginPageButton:hover {
+  background-color: #0c0d0a;
+  color: #85b324;
+  border: #85b324;
 }

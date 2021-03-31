@@ -44,9 +44,9 @@ export default function Login(props: RouteComponentProps) {
     <Container className="loginBody">
       <Row>
         <Col xs={12} className="centerForm">
-          <h4 className="loginTitle mt-2 text-center">
-            {extraInfo ? "New Here?" : "Welcome Back"}
-          </h4>
+          <h2 className="loginTitle mt-2 text-center">
+            {extraInfo ? "New Here?" : "Welcome"}
+          </h2>
           {extraInfo && (
             <h6 className="loginSubTitle mt-2 text-center">
               Lets make you an account!
@@ -54,10 +54,10 @@ export default function Login(props: RouteComponentProps) {
           )}
           <Form className="mt-4" onSubmit={handleSubmit}>
             <Form.Group as={Row}>
-              <Form.Label column xs="2" className="text-right  pr-0">
+              <Form.Label column xs="12" sm="2" className="text-center  pr-0">
                 Email
               </Form.Label>
-              <Col xs={9}>
+              <Col xs={12} sm={9}>
                 <Form.Control
                   type="text"
                   autoComplete="off"
@@ -68,10 +68,10 @@ export default function Login(props: RouteComponentProps) {
               </Col>
             </Form.Group>
             <Form.Group as={Row}>
-              <Form.Label column xs="2" className="text-right  pr-0">
+              <Form.Label column xs="12" sm="2" className="text-center  pr-0">
                 Password
               </Form.Label>
-              <Col xs={9}>
+              <Col xs={12} sm={9}>
                 <Form.Control
                   type="password"
                   autoComplete="off"
@@ -84,10 +84,15 @@ export default function Login(props: RouteComponentProps) {
             {extraInfo && (
               <>
                 <Form.Group as={Row}>
-                  <Form.Label column xs="2" className="text-right  pr-0">
+                  <Form.Label
+                    column
+                    xs="12"
+                    sm="2"
+                    className="text-center pr-0"
+                  >
                     Username
                   </Form.Label>
-                  <Col xs={9}>
+                  <Col xs={12} sm={9}>
                     <Form.Control
                       type="text"
                       autoComplete="off"
@@ -130,11 +135,9 @@ export default function Login(props: RouteComponentProps) {
                 </Button>
               </Col>
 
-              <Col
-                xs={6}
-                className="d-flex loginPageButton justify-content-center"
-              >
+              <Col xs={6} className="d-flex justify-content-center">
                 <Button
+                  className="loginPageButton"
                   onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
                     extraInfo ? handleRegisterSubmit(e) : setExtra(true)
                   }
