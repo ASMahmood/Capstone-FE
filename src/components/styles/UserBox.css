@@ -21,7 +21,7 @@
 
 .editIcon {
   cursor: pointer;
-  transition: 0.3s ease-in;
+  transition: 0.2s ease-in;
 }
 
 .editIcon:hover {

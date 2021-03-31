@@ -23,6 +23,11 @@
   color: #fff !important;
   height: 70px;
   width: 70px;
+  transition: 0.2s ease-in;
+}
+
+.navDiv:hover {
+  background-color: #05050c33;
 }
 
 .navDiv > .nav-link {
