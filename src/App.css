@@ -1,11 +1,23 @@
+#root {
+  min-height: 100vh;
+  background-color: #8bc6ec;
+  background-image: linear-gradient(
+    135deg,
+    #1c680a 0%,
+    #410d46 50%,
+    #2c308d 100%
+  );
+}
 #globalStyle {
-  background-color: #3d3e50;
+  /* background-color: #3d3e50;
   background-image: repeating-radial-gradient(
       circle at 0 0,
       transparent 0,
       #3d3e5085 100px
     ),
-    repeating-linear-gradient(#45457980, #45457946);
+    repeating-linear-gradient(#45457980, #45457946); */
+  background-color: #0e0c3b00;
+  background-image: url("https://www.transparenttextures.com/patterns/shattered.png");
   top: 0;
   bottom: 0;
   left: 0;
