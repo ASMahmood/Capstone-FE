@@ -50,3 +50,12 @@
   color: #85b324;
   border: #85b324;
 }
+
+.centerForm input.form-control {
+  border: 1px solid #577d06;
+  background-color: #f0f1ec44;
+}
+
+.centerForm input.form-control:focus {
+  box-shadow: none;
+}
