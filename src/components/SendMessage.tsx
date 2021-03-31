@@ -74,8 +74,8 @@ function SendMessage(props: sendMessageProps) {
             </Button>
           </Col>
           <Col xs={6}>
-            <Form.Group className="position-relative">
-              <Form.Label htmlFor="attach" className="attachChatButton">
+            <Form.Group className="position-relative m-0">
+              <Form.Label htmlFor="attach" className=" attachChatButton">
                 ATTACH
               </Form.Label>
               <Form.Control

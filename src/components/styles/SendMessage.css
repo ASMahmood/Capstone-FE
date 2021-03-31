@@ -11,9 +11,28 @@
   border-color: #ffffff;
   color: #ffffff;
   font-weight: 500;
+  width: 100%;
 }
 .sendChatButton:hover {
   background-color: #0c0d0a;
   color: #383d81c4;
-  border: #383d81c4;
+  border: 1px solid #383d81c4;
+}
+.attachChatButton {
+  color: #ffffff;
+  font-weight: 500;
+  border-radius: 5px;
+  line-height: 1.5;
+  text-align: center;
+  padding: 6px 12px;
+  border: 1px solid #ffffff;
+  width: 100%;
+  margin: 0;
+  cursor: pointer;
+}
+
+.attachChatButton:hover {
+  background-color: #0c0d0a;
+  color: #383d81c4;
+  border: 1px solid #383d81c4;
 }
