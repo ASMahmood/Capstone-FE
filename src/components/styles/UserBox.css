@@ -14,3 +14,7 @@
 .userInfo .form-group {
   margin: 0;
 }
+
+.textBox {
+  height: 200px;
+}

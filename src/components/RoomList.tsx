@@ -32,7 +32,7 @@ function RoomList(props: roomListProps) {
   };
   return (
     <div className="roomListBox">
-      <h4>Open Rooms</h4>
+      <h4>Your Rooms</h4>
       <ListGroup variant="flush">
         {props.user.rooms.length > 0 ? (
           props.user.rooms.map((room: individualRoom, i) => (

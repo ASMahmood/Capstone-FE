@@ -8,6 +8,8 @@ import "./styles/UserBox.css";
 const mapStateToProps = (state: reduxStore) => state;
 
 function UserBox(props: reduxStore) {
+  const [editProfile, setEdit] = useState<boolean>(false);
+
   const handleChange = async (image: File) => {
     await editProfilePic(image);
   };
@@ -36,7 +38,9 @@ function UserBox(props: reduxStore) {
           />
         </Form.Group>
       </Form>
-      <h3>Hello there, {props.user.username}</h3>
+      <div className="textBox align-content-top">
+        <h3>Hello there, {props.user.username}</h3>
+      </div>
     </div>
   );
 }
