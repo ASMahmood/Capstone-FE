@@ -1,5 +1,6 @@
 .navbar {
-  background-color: rgb(216, 216, 216);
+  background-color: transparent;
+  color: #fff;
 }
 .navbar .btn {
   padding: 0.3rem;
@@ -8,12 +9,27 @@
   width: auto;
 }
 .navbar .navDiv {
-  color: rgb(114, 114, 114);
   font-size: 14px;
 }
 .navbar a {
   text-decoration: none;
 }
-.navbar .navDiv:hover {
-  color: rgb(68, 68, 68);
+
+.navDiv {
+  background-color: #11132e33;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 6px -6px rgba(49, 49, 49, 0.295);
+  border-radius: 12px;
+  color: #fff !important;
+  height: 70px;
+  width: 70px;
+  transition: 0.2s ease-in;
+}
+
+.navDiv:hover {
+  background-color: #05050c33;
+}
+
+.navDiv > .nav-link {
+  color: #fff !important;
 }

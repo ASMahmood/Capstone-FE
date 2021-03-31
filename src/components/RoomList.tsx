@@ -32,7 +32,7 @@ function RoomList(props: roomListProps) {
   };
   return (
     <div className="roomListBox">
-      <h4>Open Rooms</h4>
+      <h4>Your Rooms</h4>
       <ListGroup variant="flush">
         {props.user.rooms.length > 0 ? (
           props.user.rooms.map((room: individualRoom, i) => (
@@ -41,7 +41,9 @@ function RoomList(props: roomListProps) {
               className="roomListing"
               onClick={() => handleClick(room._id)}
             >
-              {room.name} - {room.participants.length} members
+              <h5>{room.name}</h5>
+              {room.participants.length} member
+              {room.participants.length > 1 && "s"}
             </ListGroup.Item>
           ))
         ) : (

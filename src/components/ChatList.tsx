@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import {} from "react-bootstrap";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
+import { AiOutlineCloudDownload } from "react-icons/ai";
 import { listenChat } from "../functions/socket";
 import { convertTime } from "../functions/other";
 import { chatMessage } from "../types/otherInterfaces";
@@ -45,6 +46,7 @@ function ChatList(props: chatListProps) {
             <div>{message.text}</div>
             {message.attachment && message.attachment !== "null" && (
               <div
+                className="attachmentDiv"
                 onClick={() =>
                   window.open(
                     `${process.env.REACT_APP_BACKEND_URL}/files/${message.attachment}`,
@@ -52,6 +54,7 @@ function ChatList(props: chatListProps) {
                   )
                 }
               >
+                <AiOutlineCloudDownload fontSize={35} />
                 {message.attachment}
               </div>
             )}

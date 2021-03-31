@@ -11,12 +11,9 @@ import "./styles/NavBar.css";
 function NavBar() {
   return (
     <Navbar>
-      <Link to="/">
-        <Navbar.Brand>#NEED_A_NAME</Navbar.Brand>
-      </Link>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
+        <Nav className="d-flex justify-content-center w-100">
           <Link to="/">
             <div className="navDiv d-flex flex-column align-items-center justify-content-center ">
               <AiOutlineHome fontSize="18" />
@@ -24,13 +21,13 @@ function NavBar() {
             </div>
           </Link>
           <Link to="/login">
-            <div className="navDiv d-flex flex-column align-items-center justify-content-center ">
+            <div className="navDiv ml-5 d-flex flex-column align-items-center justify-content-center ">
               <AiOutlineLogout fontSize="18" />
               <span className="nav-link py-0">Logout</span>
             </div>
           </Link>
         </Nav>
-        <Form inline>
+        {/* <Form inline>
           <Form.Control
             type="text"
             id="navbarSearch"
@@ -40,7 +37,7 @@ function NavBar() {
           <Button variant="secondary">
             <AiOutlineSearch fontSize="22" />
           </Button>
-        </Form>
+        </Form> */}
       </Navbar.Collapse>
     </Navbar>
   );

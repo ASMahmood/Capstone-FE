@@ -190,7 +190,7 @@ export const editProfilePic = async (
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_URL}/users/me/upload`,
       {
-        method: "POST",
+        method: "PUT",
         headers: { Accept: "application/json" },
         credentials: "include",
         body: formData,
@@ -214,16 +214,49 @@ export const setProfilePic = async (
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_URL}/users/${userId}/upload`,
       {
-        method: "POST",
+        method: "PUT",
         headers: { Accept: "application/json" },
         credentials: "include",
         body: formData,
       }
     );
     const parsedResp = await response.json();
-    return { message: "Success setting profile pic" };
+    return parsedResp;
   } catch (error) {
     console.log(error);
     return { message: "Error setting profile pic" };
+  }
+};
+
+export const editProfileFetch = async (
+  username: string
+): Promise<singleMessageResponse> => {
+  try {
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/users/me`,
+      {
+        method: "PUT",
+        credentials: "include",
+        body: JSON.stringify({ username: username }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const parsedResp = await response.json();
+    return parsedResp;
+  } catch (error) {
+    console.log(error);
+    return { message: "Error setting profile pic" };
+  }
+};
+
+export const fetchRandomMeme = async () => {
+  try {
+    const response = await fetch("https://meme-api.herokuapp.com/gimme");
+    const parsedResp = await response.json();
+    return parsedResp.url;
+  } catch (error) {
+    console.log(error);
   }
 };

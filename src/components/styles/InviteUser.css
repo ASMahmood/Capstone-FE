@@ -1,5 +1,5 @@
 #addUserbox {
-  z-index: 20;
+  z-index: 50 !important;
   position: absolute;
   right: 0;
   bottom: -50px;

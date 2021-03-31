@@ -1,16 +1,21 @@
 .loginBody {
   margin-top: 1rem;
-  color: rgb(114, 114, 114);
+  color: #ffffff;
   font-size: 18px;
   padding-left: 5vw;
   padding-right: 5vw;
+  margin-top: 25vh;
+  max-width: 1000px;
+  opacity: 1;
 }
 
 .centerForm {
-  background-color: rgb(102, 15, 102);
+  background-color: #11132e33;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 6px -6px rgba(49, 49, 49, 0.295);
   width: 100%;
   height: auto;
-  border-radius: 25px;
+  border-radius: 12px;
 }
 
 .loginTitle {
@@ -33,4 +38,31 @@
   width: 150px;
   border-radius: 5px;
   object-fit: cover;
+}
+
+.loginPageButton {
+  border-color: #ffffff;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.loginPageButton:hover {
+  background-color: #0c0d0a;
+  color: #383d81c4;
+  border: #383d81c4;
+}
+
+input.form-control {
+  border: 1px solid #ffffff;
+  background-color: #ffffff44;
+}
+
+input.form-control:focus {
+  box-shadow: none;
+  background-color: #ffffff75;
+  border: 1px solid #ffffff;
+}
+
+input.form-control::placeholder {
+  color: #fff;
 }

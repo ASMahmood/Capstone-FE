@@ -2,6 +2,7 @@ import React from "react";
 import { ListGroup } from "react-bootstrap";
 import { connect } from "react-redux";
 import { reduxStore } from "../types/reduxInterface";
+import "./styles/FriendList.css";
 
 const mapStateToProps = (state: reduxStore) => state;
 

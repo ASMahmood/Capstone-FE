@@ -10,9 +10,9 @@ export default function Login(props: RouteComponentProps) {
   const [username, setUsername] = useState<string>("");
   const [image, setImage] = useState<File>();
   const [extraInfo, setExtra] = useState<boolean>(false);
+  const [validated, setValidated] = useState<boolean>(false);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const loginRequest = async () => {
     const response = await loginUser(email, password);
     console.log(response);
     if (response.message === "logged in") {
@@ -22,10 +22,7 @@ export default function Login(props: RouteComponentProps) {
     }
   };
 
-  const handleRegisterSubmit = async (
-    e: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    e.preventDefault();
+  const registerRequest = async () => {
     const response = await registerUser(email, password, username);
     console.log(response);
     if (response.message === "user registered!") {
@@ -40,55 +37,97 @@ export default function Login(props: RouteComponentProps) {
     }
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.stopPropagation();
+    } else {
+      loginRequest();
+    }
+    setValidated(true);
+  };
+
+  const handleRegisterSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.stopPropagation();
+    } else {
+      registerRequest();
+    }
+    setValidated(true);
+  };
+
   return (
     <Container className="loginBody">
       <Row>
         <Col xs={12} className="centerForm">
           <h2 className="loginTitle mt-2 text-center">
-            {extraInfo ? "New Here?" : "Welcome Back"}
+            {extraInfo ? "New Here?" : "Welcome"}
           </h2>
           {extraInfo && (
             <h6 className="loginSubTitle mt-2 text-center">
               Lets make you an account!
             </h6>
           )}
-          <Form className="mt-4" onSubmit={handleSubmit}>
+          <Form
+            className="mt-4"
+            onSubmit={handleSubmit}
+            noValidate
+            validated={validated}
+          >
             <Form.Group as={Row}>
-              <Form.Label column xs="2" className="text-right  pr-0">
+              <Form.Label column xs="12" sm="2" className="text-center  pr-0">
                 Email
               </Form.Label>
-              <Col xs={9}>
+              <Col xs={12} sm={9}>
                 <Form.Control
-                  type="text"
+                  required
+                  type="email"
                   autoComplete="off"
                   value={email}
                   onChange={(e) => setEmail(e.currentTarget.value)}
                   placeholder="SoulMan69@aol.jp"
                 />
+                <Form.Control.Feedback type="invalid">
+                  This needs to be a valid email address!
+                </Form.Control.Feedback>
               </Col>
             </Form.Group>
             <Form.Group as={Row}>
-              <Form.Label column xs="2" className="text-right  pr-0">
+              <Form.Label column xs="12" sm="2" className="text-center  pr-0">
                 Password
               </Form.Label>
-              <Col xs={9}>
+              <Col xs={12} sm={9}>
                 <Form.Control
+                  required
                   type="password"
                   autoComplete="off"
+                  minLength={8}
                   value={password}
                   onChange={(e) => setPassword(e.currentTarget.value)}
                   placeholder="Please use at least 9 characters. We won't force you though."
                 />
+                <Form.Control.Feedback type="invalid">
+                  Password needs to be at least 8 characters!
+                </Form.Control.Feedback>
               </Col>
             </Form.Group>
             {extraInfo && (
               <>
                 <Form.Group as={Row}>
-                  <Form.Label column xs="2" className="text-right  pr-0">
+                  <Form.Label
+                    column
+                    xs="12"
+                    sm="2"
+                    className="text-center pr-0"
+                  >
                     Username
                   </Form.Label>
-                  <Col xs={9}>
+                  <Col xs={12} sm={9}>
                     <Form.Control
+                      required
                       type="text"
                       autoComplete="off"
                       value={username}
@@ -102,6 +141,7 @@ export default function Login(props: RouteComponentProps) {
                     Profile Picture
                   </Form.Label>
                   <Form.File
+                    required
                     accept="image/*"
                     id="loginPicSelector"
                     className="d-none"
@@ -120,24 +160,27 @@ export default function Login(props: RouteComponentProps) {
               </>
             )}
             <Form.Group as={Row}>
-              <Col
-                xs={extraInfo ? 6 : 12}
-                className="d-flex justify-content-center"
-              >
-                <Button type="submit" variant="outline-warning">
+              <Col xs={6} className="d-flex justify-content-center">
+                <Button
+                  type="submit"
+                  className="loginPageButton"
+                  variant="outline-warning"
+                >
                   {extraInfo ? "ATTEMPT LOGIN AGAIN" : "LOGIN"}
                 </Button>
               </Col>
-              {extraInfo && (
-                <Col xs={6} className="d-flex justify-content-center">
-                  <Button
-                    onClick={handleRegisterSubmit}
-                    variant="outline-warning"
-                  >
-                    REGISTER NEW USER
-                  </Button>
-                </Col>
-              )}
+
+              <Col xs={6} className="d-flex justify-content-center">
+                <Button
+                  className="loginPageButton"
+                  onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+                    extraInfo ? handleRegisterSubmit(e) : setExtra(true)
+                  }
+                  variant="outline-warning"
+                >
+                  REGISTER
+                </Button>
+              </Col>
             </Form.Group>
           </Form>
         </Col>

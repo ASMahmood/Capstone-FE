@@ -49,7 +49,11 @@ function CreateRoom(props: createRoomProps) {
           value={roomName}
           onChange={(e) => setRoomName(e.currentTarget.value)}
         />
-        <Button type="submit" variant="outline-warning">
+        <Button
+          type="submit"
+          className="loginPageButton"
+          variant="outline-warning"
+        >
           CREATE
         </Button>
       </Form>
