@@ -18,3 +18,17 @@
 .textBox {
   height: 200px;
 }
+
+.editIcon {
+  cursor: pointer;
+  transition: 0.3s ease-in;
+}
+
+.editIcon:hover {
+  color: #101701;
+}
+
+.editUsernameInput.form-control {
+  width: auto;
+  height: auto;
+}

@@ -10,6 +10,7 @@ const mapStateToProps = (state: reduxStore) => state;
 
 function UserBox(props: reduxStore) {
   const [editProfile, setEdit] = useState<boolean>(false);
+  const [username, setUsername] = useState<string>(props.user.username);
 
   const handleChange = async (image: File) => {
     await editProfilePic(image);
@@ -40,7 +41,26 @@ function UserBox(props: reduxStore) {
         </Form.Group>
       </Form>
       <div className="textBox align-content-top">
-        <h3 className="mt-3">Hello there, {props.user.username}</h3>
+        <h3 className="mt-3 d-flex align-items-center">
+          Hello there,{" "}
+          {editProfile ? (
+            <Form.Control
+              required
+              type="text"
+              className="editUsernameInput"
+              autoComplete="off"
+              value={username}
+              onChange={(e) => setUsername(e.currentTarget.value)}
+              placeholder="Others will see you as this."
+            />
+          ) : (
+            props.user.username
+          )}{" "}
+          <AiOutlineEdit
+            className="ml-3 editIcon"
+            onClick={() => (editProfile ? setEdit(false) : setEdit(true))}
+          />
+        </h3>
       </div>
     </div>
   );
