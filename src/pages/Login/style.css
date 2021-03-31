@@ -1,6 +1,6 @@
 .loginBody {
   margin-top: 1rem;
-  color: #577d06;
+  color: #ffffff;
   font-size: 18px;
   padding-left: 5vw;
   padding-right: 5vw;
@@ -10,11 +10,12 @@
 }
 
 .centerForm {
-  background-color: #10170127;
-  box-shadow: 0 20px 6px -6px rgba(49, 49, 49, 0.295);
+  background-color: #11132e33;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 6px -6px rgba(49, 49, 49, 0.295);
   width: 100%;
   height: auto;
-  border-radius: 25px;
+  border-radius: 12px;
 }
 
 .loginTitle {
@@ -47,8 +48,8 @@
 
 .loginPageButton:hover {
   background-color: #0c0d0a;
-  color: #85b324;
-  border: #85b324;
+  color: #383d81c4;
+  border: #383d81c4;
 }
 
 input.form-control {
