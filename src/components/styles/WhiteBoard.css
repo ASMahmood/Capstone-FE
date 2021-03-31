@@ -9,7 +9,7 @@
 
 #boardOptions {
   position: absolute;
-  background-color: rgb(211, 211, 211);
+  background-color: #130a6879;
   border-radius: 0px 0px 15px 15px;
   left: 0;
   right: 0;
@@ -28,13 +28,22 @@
 }
 
 #widthPicker {
-  width: 50px;
-  height: 30px;
-  text-align: end;
+  width: 100px;
+  height: 10px;
+  opacity: 0.2;
+  border-radius: 12px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
 }
 
-#widthPicker::-webkit-outer-spin-button,
-#widthPicker::-webkit-inner-spin-button {
+#widthPicker::-webkit-slider-thumb {
   -webkit-appearance: none;
-  margin: 0;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50px;
+  background: #130a68;
+  cursor: pointer;
 }

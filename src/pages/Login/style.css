@@ -59,6 +59,8 @@ input.form-control {
 
 input.form-control:focus {
   box-shadow: none;
+  background-color: #ffffff75;
+  border: 1px solid #ffffff;
 }
 
 input.form-control::placeholder {
