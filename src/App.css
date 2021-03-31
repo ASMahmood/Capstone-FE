@@ -11,6 +11,7 @@
   bottom: 0;
   left: 0;
   right: 0;
+  height: 100%;
   position: absolute;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
