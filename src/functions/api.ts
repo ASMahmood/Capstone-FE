@@ -260,3 +260,20 @@ export const fetchRandomMeme = async () => {
     console.log(error);
   }
 };
+
+export const logoutUser = async (): Promise<singleMessageResponse> => {
+  try {
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/users/logout`,
+      {
+        method: "POST",
+        credentials: "include",
+      }
+    );
+    const parsedResp = await response.json();
+    return parsedResp;
+  } catch (error) {
+    console.log(error);
+    return { message: "Error setting profile pic" };
+  }
+};
