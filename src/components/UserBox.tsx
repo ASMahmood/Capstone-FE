@@ -90,6 +90,9 @@ function UserBox(props: userBoxProps) {
             <></>
           )}
         </h3>
+        <div id="userWhiteboard">
+          <canvas id="userCanvas"></canvas>
+        </div>
       </div>
     </div>
   );

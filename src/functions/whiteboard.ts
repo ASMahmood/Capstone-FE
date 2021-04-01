@@ -153,3 +153,21 @@ export const drawOnCanvas = async (props: reduxStore) => {
     draw();
   }
 };
+
+export const userWhiteboard = async () => {
+  const userCanvas: HTMLCanvasElement = document.querySelector(
+    "#userCanvas"
+  ) as HTMLCanvasElement;
+  const ctx2: CanvasRenderingContext2D = userCanvas.getContext(
+    "2d"
+  ) as CanvasRenderingContext2D;
+  const userWhiteboard: HTMLElement = document.querySelector(
+    "#userWhiteboard"
+  ) as HTMLElement;
+
+  function onResize() {
+    userCanvas.width = userWhiteboard.offsetWidth;
+    userCanvas.height = userWhiteboard.offsetHeight;
+    // draw();
+  }
+};

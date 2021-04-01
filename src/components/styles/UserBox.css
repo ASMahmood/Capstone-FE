@@ -17,6 +17,7 @@
 
 .textBox {
   height: 200px;
+  width: 100%;
 }
 
 .editIcon {
@@ -31,4 +32,9 @@
 .editUsernameInput.form-control {
   width: auto;
   height: auto;
+}
+
+#userWhiteboard {
+  background-color: #fff;
+  width: 90%;
 }
