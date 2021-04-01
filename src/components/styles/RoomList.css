@@ -16,3 +16,27 @@
   font-weight: 700;
   font-size: 25px;
 }
+
+.actualListOfRooms {
+  overflow-y: scroll;
+  height: 90%;
+}
+
+.actualListOfRooms::-webkit-scrollbar {
+  width: 5px;
+  transition: 0.2s ease-in;
+  cursor: pointer;
+}
+
+.actualListOfRooms::-webkit-scrollbar-track {
+  background: transparent;
+  transition: 0.2s ease-in;
+  cursor: pointer;
+}
+
+.actualListOfRooms::-webkit-scrollbar-thumb {
+  background: #888;
+  transition: 0.2s ease-in;
+  cursor: pointer;
+  border-radius: 5px;
+}
