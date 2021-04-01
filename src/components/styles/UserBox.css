@@ -9,6 +9,7 @@
   width: 200px;
   border-radius: 10px;
   object-fit: cover;
+  cursor: pointer;
 }
 
 .userInfo .form-group {
@@ -37,4 +38,12 @@
 #userWhiteboard {
   background-color: #fff;
   width: 90%;
+  height: 70%;
+  border-radius: 5px;
+  cursor: crosshair;
+}
+
+#userCanvas {
+  height: 100%;
+  width: 100%;
 }

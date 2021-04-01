@@ -165,6 +165,64 @@ export const userWhiteboard = async () => {
     "#userWhiteboard"
   ) as HTMLElement;
 
+  let current: currentLineInfo = {
+    x: 0,
+    y: 0,
+  };
+  let drawing = false;
+  let color: string = "black";
+  let width: number = 2;
+
+  userCanvas.addEventListener("mousedown", onMouseDown, false);
+  userCanvas.addEventListener("mouseup", onMouseUp, false);
+  userCanvas.addEventListener("mouseout", onMouseUp, false);
+  userCanvas.addEventListener("mousemove", onMouseMove, false);
+
+  window.addEventListener("resize", onResize, false);
+  onResize();
+
+  function drawLine(
+    x0: number,
+    y0: number,
+    x1: number,
+    y1: number,
+    color: string,
+    width: number
+  ) {
+    ctx2.beginPath();
+    ctx2.moveTo(x0, y0);
+    ctx2.lineTo(x1, y1);
+    ctx2.lineCap = "round";
+    ctx2.strokeStyle = color;
+    ctx2.lineWidth = width;
+    ctx2.stroke();
+    ctx2.closePath();
+  }
+
+  function onMouseDown(e: MouseEvent) {
+    console.log(e.offsetX, e.offsetY);
+    drawing = true;
+    current.x = e.offsetX;
+    current.y = e.offsetY;
+  }
+
+  function onMouseMove(e: MouseEvent) {
+    if (!drawing) {
+      return;
+    }
+    drawLine(current.x, current.y, e.offsetX, e.offsetY, color, width);
+    current.x = e.offsetX;
+    current.y = e.offsetY;
+  }
+
+  function onMouseUp(e: MouseEvent) {
+    if (!drawing) {
+      return;
+    }
+    drawing = false;
+    drawLine(current.x, current.y, e.offsetX, e.offsetY, color, width);
+  }
+
   function onResize() {
     userCanvas.width = userWhiteboard.offsetWidth;
     userCanvas.height = userWhiteboard.offsetHeight;
