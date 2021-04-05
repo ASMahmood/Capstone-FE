@@ -215,11 +215,9 @@ export const userWhiteboard = async () => {
   function onMouseDown(e: MouseEvent) {
     if (editing) {
       drawing = true;
+      current.x = e.offsetX;
+      current.y = e.offsetY;
     }
-    console.log(e.offsetX, e.offsetY);
-
-    current.x = e.offsetX;
-    current.y = e.offsetY;
   }
 
   function onMouseMove(e: MouseEvent) {
