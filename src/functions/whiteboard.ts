@@ -164,11 +164,15 @@ export const userWhiteboard = async () => {
   const userWhiteboard: HTMLElement = document.querySelector(
     "#userWhiteboard"
   ) as HTMLElement;
+  const editButton: HTMLElement = document.querySelector(
+    "#homepageEdit"
+  ) as HTMLElement;
 
   let current: currentLineInfo = {
     x: 0,
     y: 0,
   };
+  let editing = false;
   let drawing = false;
   let color: string = "black";
   let width: number = 2;
@@ -177,9 +181,18 @@ export const userWhiteboard = async () => {
   userCanvas.addEventListener("mouseup", onMouseUp, false);
   userCanvas.addEventListener("mouseout", onMouseUp, false);
   userCanvas.addEventListener("mousemove", onMouseMove, false);
+  editButton.addEventListener("click", toggleEdit, false);
 
   window.addEventListener("resize", onResize, false);
   onResize();
+
+  function toggleEdit() {
+    if (editing) {
+      editing = false;
+    } else {
+      editing = true;
+    }
+  }
 
   function drawLine(
     x0: number,
@@ -200,8 +213,11 @@ export const userWhiteboard = async () => {
   }
 
   function onMouseDown(e: MouseEvent) {
+    if (editing) {
+      drawing = true;
+    }
     console.log(e.offsetX, e.offsetY);
-    drawing = true;
+
     current.x = e.offsetX;
     current.y = e.offsetY;
   }

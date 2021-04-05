@@ -84,6 +84,7 @@ function UserBox(props: userBoxProps) {
             props.user.username
           )}{" "}
           <AiOutlineEdit
+            id="homepageEdit"
             className="ml-3 editIcon"
             onClick={() => (editProfile ? setEdit(false) : setEdit(true))}
           />
