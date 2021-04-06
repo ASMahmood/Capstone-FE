@@ -47,3 +47,12 @@
   height: 100%;
   width: 100%;
 }
+
+#homepageColorPicker {
+  width: 100px;
+  padding: 0;
+  border: none;
+  border-radius: 15px;
+  background-color: transparent;
+  visibility: hidden;
+}

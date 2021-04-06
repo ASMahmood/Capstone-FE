@@ -3,6 +3,7 @@ import { Form } from "react-bootstrap";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { AiOutlineEdit, AiOutlineSend } from "react-icons/ai";
+import { FaPalette } from "react-icons/fa";
 import { reduxStore } from "../types/reduxInterface";
 import { populateUserDispatch } from "../types/dispatchInterfaces";
 import { editProfileFetch, editProfilePic } from "../functions/api";
@@ -89,10 +90,16 @@ function UserBox(props: userBoxProps) {
             onClick={() => (editProfile ? setEdit(false) : setEdit(true))}
           />
           {editProfile ? (
-            <AiOutlineSend
-              className="ml-3 editIcon"
-              onClick={() => handleUsername()}
-            />
+            <>
+              <Form.Label className="ml-4" htmlFor="homepageColorPicker">
+                <FaPalette fontSize="20" className="editIcon" />
+              </Form.Label>
+              <Form.Control type="color" id="homepageColorPicker" />
+              <AiOutlineSend
+                className="ml-3 editIcon"
+                onClick={() => handleUsername()}
+              />
+            </>
           ) : (
             <></>
           )}
