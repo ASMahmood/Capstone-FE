@@ -79,7 +79,7 @@ function UserBox(props: userBoxProps) {
               autoComplete="off"
               value={username}
               onChange={(e) => setUsername(e.currentTarget.value)}
-              placeholder="Others will see you as this."
+              placeholder="New Username?"
             />
           ) : (
             props.user.username

@@ -155,6 +155,23 @@ export const drawOnCanvas = async (props: reduxStore) => {
 };
 
 export const userWhiteboard = async () => {
+  let current: currentLineInfo = {
+    x: 0,
+    y: 0,
+  };
+  let editing: boolean = false;
+  let drawing = false;
+  let color: string = "black";
+  let width: number = 2;
+
+  const toggleEdit = () => {
+    if (editing) {
+      editing = false;
+    } else {
+      editing = true;
+    }
+  };
+
   const userCanvas: HTMLCanvasElement = document.querySelector(
     "#userCanvas"
   ) as HTMLCanvasElement;
@@ -167,15 +184,13 @@ export const userWhiteboard = async () => {
   const editButton: HTMLElement = document.querySelector(
     "#homepageEdit"
   ) as HTMLElement;
-
-  let current: currentLineInfo = {
-    x: 0,
-    y: 0,
-  };
-  let editing = false;
-  let drawing = false;
-  let color: string = "black";
-  let width: number = 2;
+  if (editing) {
+    const homepageColorPicker: Element = (await document.querySelector(
+      "#homepageColorPicker"
+    )) as Element;
+    homepageColorPicker.addEventListener("change", changeColor, false);
+    console.log("editing open");
+  }
 
   userCanvas.addEventListener("mousedown", onMouseDown, false);
   userCanvas.addEventListener("mouseup", onMouseUp, false);
@@ -186,12 +201,9 @@ export const userWhiteboard = async () => {
   window.addEventListener("resize", onResize, false);
   onResize();
 
-  function toggleEdit() {
-    if (editing) {
-      editing = false;
-    } else {
-      editing = true;
-    }
+  function changeColor(e: any) {
+    console.log(e.currentTarget.value);
+    color = e.currentTarget.value;
   }
 
   function drawLine(
