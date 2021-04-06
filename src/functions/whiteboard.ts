@@ -184,13 +184,6 @@ export const userWhiteboard = async () => {
   const editButton: HTMLElement = document.querySelector(
     "#homepageEdit"
   ) as HTMLElement;
-  if (editing) {
-    const homepageColorPicker: Element = (await document.querySelector(
-      "#homepageColorPicker"
-    )) as Element;
-    homepageColorPicker.addEventListener("change", changeColor, false);
-    console.log("editing open");
-  }
 
   userCanvas.addEventListener("mousedown", onMouseDown, false);
   userCanvas.addEventListener("mouseup", onMouseUp, false);
@@ -200,11 +193,6 @@ export const userWhiteboard = async () => {
 
   window.addEventListener("resize", onResize, false);
   onResize();
-
-  function changeColor(e: any) {
-    console.log(e.currentTarget.value);
-    color = e.currentTarget.value;
-  }
 
   function drawLine(
     x0: number,

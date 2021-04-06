@@ -91,10 +91,6 @@ function UserBox(props: userBoxProps) {
           />
           {editProfile ? (
             <>
-              <Form.Label className="ml-4" htmlFor="homepageColorPicker">
-                <FaPalette fontSize="20" className="editIcon" />
-              </Form.Label>
-              <Form.Control type="color" id="homepageColorPicker" />
               <AiOutlineSend
                 className="ml-3 editIcon"
                 onClick={() => handleUsername()}
