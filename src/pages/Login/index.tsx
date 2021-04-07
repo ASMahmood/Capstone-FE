@@ -60,9 +60,9 @@ export default function Login(props: RouteComponentProps) {
   };
 
   return (
-    <Container className="loginBody">
+    <Container className="loginBody centerForm">
       <Row>
-        <Col xs={12} className="centerForm">
+        <Col xs={12}>
           <h2 className="loginTitle mt-2 text-center">
             {extraInfo ? "New Here?" : "Welcome"}
           </h2>
@@ -71,6 +71,15 @@ export default function Login(props: RouteComponentProps) {
               Lets make you an account!
             </h6>
           )}
+        </Col>
+      </Row>
+      <Row>
+        <Col id="loginColLeft" xs={4}>
+          <div id="loginWhiteboard">
+            <canvas id="loginCanvas"></canvas>
+          </div>
+        </Col>
+        <Col xs={8}>
           <Form
             className="mt-4"
             onSubmit={handleSubmit}
