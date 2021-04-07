@@ -7,6 +7,7 @@
     #410d46 50%,
     #2c308d 100%
   );
+  height: 100%;
 }
 #globalStyle {
   /* background-color: #3d3e50;
@@ -17,12 +18,13 @@
     ),
     repeating-linear-gradient(#45457980, #45457946); */
   background-color: #0e0c3b00;
+  background-repeat: repeat;
   background-image: url("https://www.transparenttextures.com/patterns/shattered.png");
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  height: -webkit-fill-available;
+  height: 100%;
   position: absolute;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }

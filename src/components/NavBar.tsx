@@ -1,6 +1,7 @@
 import React from "react";
 import { Nav, Navbar, Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, RouteComponentProps, withRouter } from "react-router-dom";
+import { logoutUser } from "../functions/api";
 import {
   AiOutlineSearch,
   AiOutlineHome,
@@ -8,24 +9,30 @@ import {
 } from "react-icons/ai";
 import "./styles/NavBar.css";
 
-function NavBar() {
+function NavBar(props: RouteComponentProps) {
   return (
     <Navbar>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="d-flex justify-content-center w-100">
-          <Link to="/">
-            <div className="navDiv d-flex flex-column align-items-center justify-content-center ">
-              <AiOutlineHome fontSize="18" />
-              <span className="nav-link py-0">Home</span>
-            </div>
-          </Link>
-          <Link to="/login">
-            <div className="navDiv ml-5 d-flex flex-column align-items-center justify-content-center ">
-              <AiOutlineLogout fontSize="18" />
-              <span className="nav-link py-0">Logout</span>
-            </div>
-          </Link>
+          <div
+            className="navDiv d-flex flex-column align-items-center justify-content-center"
+            onClick={() => props.history.push("/")}
+          >
+            <AiOutlineHome fontSize="18" />
+            <span className="nav-link py-0">Home</span>
+          </div>
+
+          <div
+            className="navDiv ml-5 d-flex flex-column align-items-center justify-content-center"
+            onClick={async () => {
+              await logoutUser();
+              props.history.push("/login");
+            }}
+          >
+            <AiOutlineLogout fontSize="18" />
+            <span className="nav-link py-0">Logout</span>
+          </div>
         </Nav>
         {/* <Form inline>
           <Form.Control
@@ -43,4 +50,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+export default withRouter(NavBar);

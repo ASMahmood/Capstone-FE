@@ -229,7 +229,8 @@ export const setProfilePic = async (
 };
 
 export const editProfileFetch = async (
-  username: string
+  username: string,
+  image: string
 ): Promise<singleMessageResponse> => {
   try {
     const response = await fetch(
@@ -237,7 +238,7 @@ export const editProfileFetch = async (
       {
         method: "PUT",
         credentials: "include",
-        body: JSON.stringify({ username: username }),
+        body: JSON.stringify({ username: username, bioImage: image }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -258,5 +259,22 @@ export const fetchRandomMeme = async () => {
     return parsedResp.url;
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const logoutUser = async (): Promise<singleMessageResponse> => {
+  try {
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/users/logout`,
+      {
+        method: "POST",
+        credentials: "include",
+      }
+    );
+    const parsedResp = await response.json();
+    return parsedResp;
+  } catch (error) {
+    console.log(error);
+    return { message: "Error setting profile pic" };
   }
 };

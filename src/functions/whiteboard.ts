@@ -153,3 +153,104 @@ export const drawOnCanvas = async (props: reduxStore) => {
     draw();
   }
 };
+
+export const userWhiteboard = async (props: reduxStore) => {
+  let current: currentLineInfo = {
+    x: 0,
+    y: 0,
+  };
+  let editing: boolean = false;
+  let drawing = false;
+  let color: string = "black";
+  let width: number = 2;
+
+  const toggleEdit = () => {
+    if (editing) {
+      editing = false;
+    } else {
+      editing = true;
+    }
+  };
+
+  const userCanvas: HTMLCanvasElement = document.querySelector(
+    "#userCanvas"
+  ) as HTMLCanvasElement;
+  const ctx2: CanvasRenderingContext2D = userCanvas.getContext(
+    "2d"
+  ) as CanvasRenderingContext2D;
+  const userWhiteboard: HTMLElement = document.querySelector(
+    "#userWhiteboard"
+  ) as HTMLElement;
+  const editButton: HTMLElement = document.querySelector(
+    "#homepageEdit"
+  ) as HTMLElement;
+
+  function draw() {
+    let image = new Image();
+    image.onload = function () {
+      ctx2.drawImage(image, 0, 0);
+    };
+    image.src = props.user.bioImage;
+    image.width = userWhiteboard.offsetWidth;
+    image.height = userWhiteboard.offsetHeight;
+  }
+  draw();
+
+  userCanvas.addEventListener("mousedown", onMouseDown, false);
+  userCanvas.addEventListener("mouseup", onMouseUp, false);
+  userCanvas.addEventListener("mouseout", onMouseUp, false);
+  userCanvas.addEventListener("mousemove", onMouseMove, false);
+  editButton.addEventListener("click", toggleEdit, false);
+
+  window.addEventListener("resize", onResize, false);
+  onResize();
+
+  function drawLine(
+    x0: number,
+    y0: number,
+    x1: number,
+    y1: number,
+    color: string,
+    width: number
+  ) {
+    ctx2.beginPath();
+    ctx2.moveTo(x0, y0);
+    ctx2.lineTo(x1, y1);
+    ctx2.lineCap = "round";
+    ctx2.strokeStyle = color;
+    ctx2.lineWidth = width;
+    ctx2.stroke();
+    ctx2.closePath();
+  }
+
+  function onMouseDown(e: MouseEvent) {
+    if (editing) {
+      drawing = true;
+      current.x = e.offsetX;
+      current.y = e.offsetY;
+    }
+  }
+
+  function onMouseMove(e: MouseEvent) {
+    if (!drawing) {
+      return;
+    }
+    drawLine(current.x, current.y, e.offsetX, e.offsetY, color, width);
+    current.x = e.offsetX;
+    current.y = e.offsetY;
+  }
+
+  function onMouseUp(e: MouseEvent) {
+    if (!drawing) {
+      return;
+    }
+    drawing = false;
+    drawLine(current.x, current.y, e.offsetX, e.offsetY, color, width);
+  }
+
+  function onResize() {
+    userCanvas.width = userWhiteboard.offsetWidth;
+    userCanvas.height = userWhiteboard.offsetHeight;
+    draw();
+  }
+};

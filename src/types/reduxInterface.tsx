@@ -19,6 +19,7 @@ export interface reduxStore {
       images: string;
     }[];
     profilePic: string;
+    bioImage: string;
   };
   error: {
     message: string;

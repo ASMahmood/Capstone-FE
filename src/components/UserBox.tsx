@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { AiOutlineEdit, AiOutlineSend } from "react-icons/ai";
+import { FaPalette } from "react-icons/fa";
 import { reduxStore } from "../types/reduxInterface";
 import { populateUserDispatch } from "../types/dispatchInterfaces";
-import { editProfileFetch } from "../functions/api";
-import { editProfilePic } from "../functions/api";
+import { editProfileFetch, editProfilePic } from "../functions/api";
+import { userWhiteboard } from "../functions/whiteboard";
 import "./styles/UserBox.css";
 
 type userBoxProps = reduxStore & populateUserDispatch;
@@ -25,13 +26,23 @@ function UserBox(props: userBoxProps) {
   const [editProfile, setEdit] = useState<boolean>(false);
   const [username, setUsername] = useState<string>(props.user.username);
 
+  useEffect(() => {
+    setTimeout(() => {
+      userWhiteboard(props);
+    }, 1000);
+  }, []);
+
   const handleChange = async (image: File) => {
     let updatedUser = await editProfilePic(image);
     props.populateUser(updatedUser);
   };
 
-  const handleUsername = async () => {
-    let updatedUser = await editProfileFetch(username);
+  const handleSubmit = async () => {
+    const userCanvas: HTMLCanvasElement = document.querySelector(
+      "#userCanvas"
+    ) as HTMLCanvasElement;
+    let base64ImageData = await userCanvas.toDataURL("image/png");
+    let updatedUser = await editProfileFetch(username, base64ImageData);
     await props.populateUser(updatedUser);
     setEdit(false);
     setUsername(props.user.username);
@@ -72,24 +83,30 @@ function UserBox(props: userBoxProps) {
               autoComplete="off"
               value={username}
               onChange={(e) => setUsername(e.currentTarget.value)}
-              placeholder="Others will see you as this."
+              placeholder="New Username?"
             />
           ) : (
             props.user.username
           )}{" "}
           <AiOutlineEdit
+            id="homepageEdit"
             className="ml-3 editIcon"
             onClick={() => (editProfile ? setEdit(false) : setEdit(true))}
           />
           {editProfile ? (
-            <AiOutlineSend
-              className="ml-3 editIcon"
-              onClick={() => handleUsername()}
-            />
+            <>
+              <AiOutlineSend
+                className="ml-3 editIcon"
+                onClick={() => handleSubmit()}
+              />
+            </>
           ) : (
             <></>
           )}
         </h3>
+        <div id="userWhiteboard">
+          <canvas id="userCanvas"></canvas>
+        </div>
       </div>
     </div>
   );

@@ -104,14 +104,6 @@ function RoomPage(props: roomProps) {
         </Col>
       </Row>
       <Row className="mt-4">
-        {joining && (
-          <Col
-            xs={12}
-            className="whiteBoard p-3 d-flex justify-content-center align-items-center text-center"
-          >
-            <h1>Please join this room to see its contents</h1>
-          </Col>
-        )}
         <>
           <Col className="whiteBoard">
             <WhiteBoard />
