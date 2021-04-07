@@ -21,6 +21,7 @@ export const initalState = {
     associates: [],
     rooms: [],
     profilePic: "",
+    bioImage: "",
   },
   error: {
     message: "",

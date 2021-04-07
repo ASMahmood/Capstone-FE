@@ -154,7 +154,7 @@ export const drawOnCanvas = async (props: reduxStore) => {
   }
 };
 
-export const userWhiteboard = async () => {
+export const userWhiteboard = async (props: reduxStore) => {
   let current: currentLineInfo = {
     x: 0,
     y: 0,
@@ -184,6 +184,17 @@ export const userWhiteboard = async () => {
   const editButton: HTMLElement = document.querySelector(
     "#homepageEdit"
   ) as HTMLElement;
+
+  function draw() {
+    let image = new Image();
+    image.onload = function () {
+      ctx2.drawImage(image, 0, 0);
+    };
+    image.src = props.user.bioImage;
+    image.width = userWhiteboard.offsetWidth;
+    image.height = userWhiteboard.offsetHeight;
+  }
+  draw();
 
   userCanvas.addEventListener("mousedown", onMouseDown, false);
   userCanvas.addEventListener("mouseup", onMouseUp, false);
@@ -240,6 +251,6 @@ export const userWhiteboard = async () => {
   function onResize() {
     userCanvas.width = userWhiteboard.offsetWidth;
     userCanvas.height = userWhiteboard.offsetHeight;
-    // draw();
+    draw();
   }
 };

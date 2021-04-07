@@ -229,7 +229,8 @@ export const setProfilePic = async (
 };
 
 export const editProfileFetch = async (
-  username: string
+  username: string,
+  image: string
 ): Promise<singleMessageResponse> => {
   try {
     const response = await fetch(
@@ -237,7 +238,7 @@ export const editProfileFetch = async (
       {
         method: "PUT",
         credentials: "include",
-        body: JSON.stringify({ username: username }),
+        body: JSON.stringify({ username: username, bioImage: image }),
         headers: {
           "Content-Type": "application/json",
         },

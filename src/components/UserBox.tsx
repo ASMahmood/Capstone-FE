@@ -28,7 +28,7 @@ function UserBox(props: userBoxProps) {
 
   useEffect(() => {
     setTimeout(() => {
-      userWhiteboard();
+      userWhiteboard(props);
     }, 1000);
   }, []);
 
@@ -37,8 +37,12 @@ function UserBox(props: userBoxProps) {
     props.populateUser(updatedUser);
   };
 
-  const handleUsername = async () => {
-    let updatedUser = await editProfileFetch(username);
+  const handleSubmit = async () => {
+    const userCanvas: HTMLCanvasElement = document.querySelector(
+      "#userCanvas"
+    ) as HTMLCanvasElement;
+    let base64ImageData = await userCanvas.toDataURL("image/png");
+    let updatedUser = await editProfileFetch(username, base64ImageData);
     await props.populateUser(updatedUser);
     setEdit(false);
     setUsername(props.user.username);
@@ -93,7 +97,7 @@ function UserBox(props: userBoxProps) {
             <>
               <AiOutlineSend
                 className="ml-3 editIcon"
-                onClick={() => handleUsername()}
+                onClick={() => handleSubmit()}
               />
             </>
           ) : (
