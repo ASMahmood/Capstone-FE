@@ -71,8 +71,15 @@ input.form-control::placeholder {
   background-color: white;
   border-radius: 10px;
   height: 100%;
+  width: 100%;
 }
 
 #loginColLeft {
   border-right: 1px solid grey;
+}
+
+.loginSmallText {
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  font-size: 15px;
 }

@@ -87,10 +87,10 @@ export default function Login(props: RouteComponentProps) {
             validated={validated}
           >
             <Form.Group as={Row}>
-              <Form.Label column xs="12" sm="2" className="text-center  pr-0">
+              <Form.Label column xs="3" className="text-start  pr-0">
                 Email
               </Form.Label>
-              <Col xs={12} sm={9}>
+              <Col xs={9}>
                 <Form.Control
                   required
                   type="email"
@@ -105,10 +105,10 @@ export default function Login(props: RouteComponentProps) {
               </Col>
             </Form.Group>
             <Form.Group as={Row}>
-              <Form.Label column xs="12" sm="2" className="text-center  pr-0">
+              <Form.Label column xs="3" className="text-start   pr-0">
                 Password
               </Form.Label>
-              <Col xs={12} sm={9}>
+              <Col xs={9}>
                 <Form.Control
                   required
                   type="password"
@@ -126,15 +126,10 @@ export default function Login(props: RouteComponentProps) {
             {extraInfo && (
               <>
                 <Form.Group as={Row}>
-                  <Form.Label
-                    column
-                    xs="12"
-                    sm="2"
-                    className="text-center pr-0"
-                  >
+                  <Form.Label column xs="3" className="text-start pr-0">
                     Username
                   </Form.Label>
-                  <Col xs={12} sm={9}>
+                  <Col xs={9}>
                     <Form.Control
                       required
                       type="text"
@@ -168,7 +163,13 @@ export default function Login(props: RouteComponentProps) {
                 )}
               </>
             )}
-            <Form.Group as={Row}>
+            <span
+              className="loginSmallText"
+              onClick={() => (extraInfo ? setExtra(false) : setExtra(true))}
+            >
+              New Here? Click to register!
+            </span>
+            <Form.Group className="mt-3" as={Row}>
               <Col xs={6} className="d-flex justify-content-center">
                 <Button
                   type="submit"
