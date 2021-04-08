@@ -8,6 +8,7 @@
   margin-top: 25vh;
   max-width: 700px;
   opacity: 1;
+  transition: 0.2s ease-in;
 }
 
 .centerForm {
@@ -16,17 +17,20 @@
   box-shadow: 0 10px 6px -6px rgba(49, 49, 49, 0.295);
   height: auto;
   border-radius: 12px;
+  transition: 0.2s ease-in;
 }
 
 .loginTitle {
   font-weight: 400;
   font-size: 40px;
+  transition: 0.2s ease-in;
 }
 
 .loginSubTitle {
   font-weight: 400;
   font-size: 20px;
   margin: 0;
+  transition: 0.2s ease-in;
 }
 
 .imagePreview {
@@ -72,6 +76,7 @@ input.form-control::placeholder {
   border-radius: 10px;
   height: 100%;
   width: 100%;
+  cursor: crosshair;
 }
 
 #loginColLeft {
@@ -82,4 +87,10 @@ input.form-control::placeholder {
   color: rgb(255, 255, 255);
   font-weight: 600;
   font-size: 15px;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.loginSmallText:hover {
+  text-decoration: underline;
 }

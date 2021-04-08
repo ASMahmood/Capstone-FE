@@ -48,7 +48,7 @@ export default function Login(props: RouteComponentProps) {
     setValidated(true);
   };
 
-  const handleRegisterSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleRegisterSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
@@ -66,11 +66,9 @@ export default function Login(props: RouteComponentProps) {
           <h2 className="loginTitle mt-2 text-center">
             {extraInfo ? "New Here?" : "Welcome"}
           </h2>
-          {extraInfo && (
-            <h6 className="loginSubTitle mt-2 text-center">
-              Lets make you an account!
-            </h6>
-          )}
+          <h6 className="loginSubTitle mt-2 mb-3 text-center">
+            {extraInfo ? "Lets make you an account!" : "Please login"}
+          </h6>
         </Col>
       </Row>
       <Row>
@@ -82,7 +80,7 @@ export default function Login(props: RouteComponentProps) {
         <Col xs={8}>
           <Form
             className="mt-4"
-            onSubmit={handleSubmit}
+            onSubmit={extraInfo ? handleRegisterSubmit : handleSubmit}
             noValidate
             validated={validated}
           >
@@ -163,32 +161,24 @@ export default function Login(props: RouteComponentProps) {
                 )}
               </>
             )}
+            <p className="loginSmallText">Forgotten Password?</p>
             <span
               className="loginSmallText"
               onClick={() => (extraInfo ? setExtra(false) : setExtra(true))}
             >
-              New Here? Click to register!
+              {extraInfo
+                ? "Want to try to login again?"
+                : "New Here? Click to register!"}
             </span>
+
             <Form.Group className="mt-3" as={Row}>
-              <Col xs={6} className="d-flex justify-content-center">
+              <Col xs={12} className="d-flex justify-content-center">
                 <Button
                   type="submit"
                   className="loginPageButton"
                   variant="outline-warning"
                 >
-                  {extraInfo ? "ATTEMPT LOGIN AGAIN" : "LOGIN"}
-                </Button>
-              </Col>
-
-              <Col xs={6} className="d-flex justify-content-center">
-                <Button
-                  className="loginPageButton"
-                  onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
-                    extraInfo ? handleRegisterSubmit(e) : setExtra(true)
-                  }
-                  variant="outline-warning"
-                >
-                  REGISTER
+                  {extraInfo ? "REGISTER" : "LOGIN"}
                 </Button>
               </Col>
             </Form.Group>
