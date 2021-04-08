@@ -114,7 +114,7 @@ export default function Login(props: RouteComponentProps) {
                   minLength={8}
                   value={password}
                   onChange={(e) => setPassword(e.currentTarget.value)}
-                  placeholder="Please use at least 9 characters. We won't force you though."
+                  placeholder="Please use at least 8 characters."
                 />
                 <Form.Control.Feedback type="invalid">
                   Password needs to be at least 8 characters!
@@ -154,11 +154,17 @@ export default function Login(props: RouteComponentProps) {
                     }}
                   />
                 </Form.Group>
-                {image && (
-                  <div className="imagePreview mb-3">
-                    <img src={URL.createObjectURL(image)} alt="preview" />
-                  </div>
-                )}
+
+                <div className="imagePreview mb-3">
+                  <img
+                    src={
+                      image
+                        ? URL.createObjectURL(image)
+                        : "https://res.cloudinary.com/dhmw620tl/image/upload/v1611908556/benchmark3/bv7p7h0vfartmryjrxyp.png"
+                    }
+                    alt="preview"
+                  />
+                </div>
               </>
             )}
             <p className="loginSmallText">Forgotten Password?</p>
