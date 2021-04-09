@@ -26,7 +26,23 @@ function ChatList(props: chatListProps) {
   useEffect(() => {
     listenChat(props.newMessage);
     console.log("CHATLIST RENDER");
+    autoScrollchat();
   }, []);
+
+  const autoScrollchat = () => {
+    const chatList = document.querySelector("#chatList");
+    if (chatList) {
+      const scrollToBottom = () => {
+        chatList.scrollTop = chatList.scrollHeight;
+      };
+      const shouldScroll =
+        chatList.scrollTop + chatList.clientHeight === chatList.scrollHeight;
+      if (!shouldScroll) {
+        scrollToBottom();
+      }
+      scrollToBottom();
+    }
+  };
 
   return (
     <div id="chatList">
