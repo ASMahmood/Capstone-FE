@@ -40,7 +40,11 @@ function InviteUsers(props: reduxStore) {
               onChange={(e) => setEmail(e.currentTarget.value)}
             />
             <InputGroup.Append>
-              <Button type="submit" variant="secondary">
+              <Button
+                type="submit"
+                className="addUserButton"
+                variant="outline-secondary"
+              >
                 ADD
               </Button>
             </InputGroup.Append>
