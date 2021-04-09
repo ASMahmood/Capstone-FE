@@ -19,6 +19,7 @@ import WhiteBoardOption from "../../components/WhiteBoardOptions";
 import ChatList from "../../components/ChatList";
 import SendMessage from "../../components/SendMessage";
 import InviteUsers from "../../components/InviteUsers";
+import MembersDropdown from "../../components/MembersDropdown";
 
 type roomProps = reduxStore &
   populateRoomDispatch &
@@ -93,7 +94,7 @@ function RoomPage(props: roomProps) {
       <Row>
         <Col xs={12} className="roomNavTop d-flex align-items-center">
           <h2 className="m-0">{props.room.name} </h2>
-          <h5 className="ml-3"> {props.room.participants.length} members</h5>
+          <MembersDropdown />
           <BsChatDots
             className="ml-auto chatToggle"
             fontSize="30"

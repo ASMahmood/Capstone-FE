@@ -10,7 +10,14 @@ function MembersDropdown(props: reduxStore) {
 
   return (
     <>
-      <h1 onClick={() => (show ? setShow(false) : setShow(true))}>POG</h1>
+      <h5
+        onClick={() => (show ? setShow(false) : setShow(true))}
+        className="ml-3 my-0"
+      >
+        {props.room.participants.length} member
+        {props.room.participants.length > 1 && "s"}
+      </h5>
+
       <div id="membersBox" className={show ? "" : "d-none"}>
         <h1>POG 2</h1>
       </div>
