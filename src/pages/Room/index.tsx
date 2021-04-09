@@ -42,6 +42,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
 function RoomPage(props: roomProps) {
   const [joining, setJoin] = useState<boolean>(false);
+  const [showChat, setShow] = useState<boolean>(false);
 
   useEffect(() => {
     const checkIfOnline = async () => {
@@ -93,7 +94,11 @@ function RoomPage(props: roomProps) {
         <Col xs={12} className="roomNavTop d-flex align-items-center">
           <h2 className="m-0">{props.room.name} </h2>
           <h5 className="ml-3"> {props.room.participants.length} members</h5>
-          <BsChatDots className="ml-auto" fontSize="30" />
+          <BsChatDots
+            className="ml-auto"
+            fontSize="30"
+            onClick={() => (showChat ? setShow(false) : setShow(true))}
+          />
           {joining ? (
             <Button
               onClick={(e) => handleJoin(e)}
@@ -109,11 +114,17 @@ function RoomPage(props: roomProps) {
       </Row>
       <Row className="mt-4">
         <>
-          <Col className="whiteBoard">
+          <Col xs={12} className="whiteBoard">
             <WhiteBoard />
             <WhiteBoardOption />
           </Col>
-          <div className="chatBox d-flex flex-column justify-content-end">
+          <div
+            className={
+              showChat
+                ? "chatBox d-flex flex-column justify-content-end position-absolute"
+                : "chatBox d-flex flex-column justify-content-end position-absolute invisible"
+            }
+          >
             <ChatList />
             <SendMessage />
           </div>
