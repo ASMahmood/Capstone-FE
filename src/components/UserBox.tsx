@@ -3,7 +3,7 @@ import { Form } from "react-bootstrap";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { AiOutlineEdit, AiOutlineSend } from "react-icons/ai";
-import { FaPalette } from "react-icons/fa";
+import { HiOutlineCog } from "react-icons/hi";
 import { reduxStore } from "../types/reduxInterface";
 import { populateUserDispatch } from "../types/dispatchInterfaces";
 import { editProfileFetch, editProfilePic } from "../functions/api";
@@ -52,12 +52,20 @@ function UserBox(props: userBoxProps) {
     <div className="userInfo w-100 h-100 d-flex align-items-center justify-content-left">
       <Form>
         <Form.Group>
-          <Form.Label htmlFor="ProfilePicSelector">
+          <Form.Label
+            className="position-relative"
+            htmlFor="ProfilePicSelector"
+          >
             <img
-              src={props.user.profilePic}
+              src={
+                props.user.profilePic
+                  ? props.user.profilePic
+                  : "https://res.cloudinary.com/dhmw620tl/image/upload/v1611908556/benchmark3/bv7p7h0vfartmryjrxyp.png"
+              }
               alt="profile"
               className="homePagePic mx-4"
             />
+            <HiOutlineCog className="cogIcon mr-4" />
           </Form.Label>
           <Form.Control
             type="file"
