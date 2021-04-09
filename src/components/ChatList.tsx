@@ -24,17 +24,18 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
 function ChatList(props: chatListProps) {
   useEffect(() => {
-    listenChat(props.newMessage);
+    listenChat(props.newMessage, scrollToBottom);
     console.log("CHATLIST RENDER");
     autoScrollchat();
   }, []);
 
+  const scrollToBottom = () => {
+    const chatList: Element = document.querySelector("#chatList") as Element;
+    chatList.scrollTop = chatList.scrollHeight;
+  };
   const autoScrollchat = () => {
-    const chatList = document.querySelector("#chatList");
+    const chatList: Element = document.querySelector("#chatList") as Element;
     if (chatList) {
-      const scrollToBottom = () => {
-        chatList.scrollTop = chatList.scrollHeight;
-      };
       const shouldScroll =
         chatList.scrollTop + chatList.clientHeight === chatList.scrollHeight;
       if (!shouldScroll) {

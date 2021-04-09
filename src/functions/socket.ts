@@ -33,9 +33,13 @@ export const sendCanvasData = (data: canvasData) => {
   socket.emit("CANVAS_DATA", data);
 };
 
-export const listenChat = (chatFunc: (data: chatMessage) => void) => {
+export const listenChat = (
+  chatFunc: (data: chatMessage) => void,
+  secFunc?: () => void
+) => {
   console.log("socket.ts listen");
   socket.on("CHAT_MESSAGE", chatFunc);
+  if (secFunc) secFunc();
 };
 
 export const sendChat = (data: chatWithId) => {
