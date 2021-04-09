@@ -50,6 +50,7 @@ export default function Login(props: RouteComponentProps) {
 
   const handleRegisterSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log("hey");
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
       e.stopPropagation();
@@ -143,7 +144,6 @@ export default function Login(props: RouteComponentProps) {
                     Profile Picture
                   </Form.Label>
                   <Form.File
-                    required
                     accept="image/*"
                     id="loginPicSelector"
                     className="d-none"
