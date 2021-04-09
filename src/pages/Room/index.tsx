@@ -95,7 +95,7 @@ function RoomPage(props: roomProps) {
           <h2 className="m-0">{props.room.name} </h2>
           <h5 className="ml-3"> {props.room.participants.length} members</h5>
           <BsChatDots
-            className="ml-auto"
+            className="ml-auto chatToggle"
             fontSize="30"
             onClick={() => (showChat ? setShow(false) : setShow(true))}
           />

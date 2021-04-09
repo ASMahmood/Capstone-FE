@@ -26,7 +26,7 @@ function InviteUsers(props: reduxStore) {
   return (
     <>
       <AiOutlineUserAdd
-        className="ml-3"
+        className="ml-3 inviteToggle"
         fontSize="30"
         onClick={() => (show ? setShow(false) : setShow(true))}
       />
