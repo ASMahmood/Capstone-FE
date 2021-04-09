@@ -48,7 +48,7 @@ export default function Login(props: RouteComponentProps) {
     setValidated(true);
   };
 
-  const handleRegisterSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleRegisterSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
@@ -60,28 +60,35 @@ export default function Login(props: RouteComponentProps) {
   };
 
   return (
-    <Container className="loginBody">
+    <Container className="loginBody centerForm">
       <Row>
-        <Col xs={12} className="centerForm">
+        <Col xs={12}>
           <h2 className="loginTitle mt-2 text-center">
             {extraInfo ? "New Here?" : "Welcome"}
           </h2>
-          {extraInfo && (
-            <h6 className="loginSubTitle mt-2 text-center">
-              Lets make you an account!
-            </h6>
-          )}
+          <h6 className="loginSubTitle mt-2 mb-3 text-center">
+            {extraInfo ? "Lets make you an account!" : "Please login"}
+          </h6>
+        </Col>
+      </Row>
+      <Row>
+        <Col id="loginColLeft" xs={4}>
+          <div id="loginWhiteboard">
+            <canvas id="loginCanvas"></canvas>
+          </div>
+        </Col>
+        <Col xs={8}>
           <Form
             className="mt-4"
-            onSubmit={handleSubmit}
+            onSubmit={extraInfo ? handleRegisterSubmit : handleSubmit}
             noValidate
             validated={validated}
           >
             <Form.Group as={Row}>
-              <Form.Label column xs="12" sm="2" className="text-center  pr-0">
+              <Form.Label column xs="3" className="text-start  pr-0">
                 Email
               </Form.Label>
-              <Col xs={12} sm={9}>
+              <Col xs={9}>
                 <Form.Control
                   required
                   type="email"
@@ -96,10 +103,10 @@ export default function Login(props: RouteComponentProps) {
               </Col>
             </Form.Group>
             <Form.Group as={Row}>
-              <Form.Label column xs="12" sm="2" className="text-center  pr-0">
+              <Form.Label column xs="3" className="text-start   pr-0">
                 Password
               </Form.Label>
-              <Col xs={12} sm={9}>
+              <Col xs={9}>
                 <Form.Control
                   required
                   type="password"
@@ -107,7 +114,7 @@ export default function Login(props: RouteComponentProps) {
                   minLength={8}
                   value={password}
                   onChange={(e) => setPassword(e.currentTarget.value)}
-                  placeholder="Please use at least 9 characters. We won't force you though."
+                  placeholder="Please use at least 8 characters."
                 />
                 <Form.Control.Feedback type="invalid">
                   Password needs to be at least 8 characters!
@@ -117,15 +124,10 @@ export default function Login(props: RouteComponentProps) {
             {extraInfo && (
               <>
                 <Form.Group as={Row}>
-                  <Form.Label
-                    column
-                    xs="12"
-                    sm="2"
-                    className="text-center pr-0"
-                  >
+                  <Form.Label column xs="3" className="text-start pr-0">
                     Username
                   </Form.Label>
-                  <Col xs={12} sm={9}>
+                  <Col xs={9}>
                     <Form.Control
                       required
                       type="text"
@@ -152,33 +154,37 @@ export default function Login(props: RouteComponentProps) {
                     }}
                   />
                 </Form.Group>
-                {image && (
-                  <div className="imagePreview mb-3">
-                    <img src={URL.createObjectURL(image)} alt="preview" />
-                  </div>
-                )}
+
+                <div className="imagePreview mb-3">
+                  <img
+                    src={
+                      image
+                        ? URL.createObjectURL(image)
+                        : "https://res.cloudinary.com/dhmw620tl/image/upload/v1611908556/benchmark3/bv7p7h0vfartmryjrxyp.png"
+                    }
+                    alt="preview"
+                  />
+                </div>
               </>
             )}
-            <Form.Group as={Row}>
-              <Col xs={6} className="d-flex justify-content-center">
+            <p className="loginSmallText">Forgotten Password?</p>
+            <span
+              className="loginSmallText"
+              onClick={() => (extraInfo ? setExtra(false) : setExtra(true))}
+            >
+              {extraInfo
+                ? "Want to try to login again?"
+                : "New Here? Click to register!"}
+            </span>
+
+            <Form.Group className="mt-3" as={Row}>
+              <Col xs={12} className="d-flex justify-content-center">
                 <Button
                   type="submit"
                   className="loginPageButton"
                   variant="outline-warning"
                 >
-                  {extraInfo ? "ATTEMPT LOGIN AGAIN" : "LOGIN"}
-                </Button>
-              </Col>
-
-              <Col xs={6} className="d-flex justify-content-center">
-                <Button
-                  className="loginPageButton"
-                  onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
-                    extraInfo ? handleRegisterSubmit(e) : setExtra(true)
-                  }
-                  variant="outline-warning"
-                >
-                  REGISTER
+                  {extraInfo ? "REGISTER" : "LOGIN"}
                 </Button>
               </Col>
             </Form.Group>

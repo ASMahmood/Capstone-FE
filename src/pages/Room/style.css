@@ -4,6 +4,7 @@
   padding-left: 5vw;
   padding-right: 5vw;
   opacity: 1;
+  position: relative;
 }
 
 .roomNavTop {
@@ -35,4 +36,10 @@
   height: 80vh;
   border-radius: 12px;
   padding: 0px 0px 0px 5px;
+  z-index: 10;
+  right: 2vw;
+}
+
+.chatToggle {
+  cursor: pointer;
 }

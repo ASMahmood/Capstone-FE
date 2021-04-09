@@ -4,29 +4,33 @@
   font-size: 18px;
   padding-left: 5vw;
   padding-right: 5vw;
+  padding-bottom: 30px;
   margin-top: 25vh;
-  max-width: 1000px;
+  max-width: 700px;
   opacity: 1;
+  transition: 0.2s ease-in;
 }
 
 .centerForm {
   background-color: #11132e33;
   backdrop-filter: blur(8px);
   box-shadow: 0 10px 6px -6px rgba(49, 49, 49, 0.295);
-  width: 100%;
   height: auto;
   border-radius: 12px;
+  transition: 0.2s ease-in;
 }
 
 .loginTitle {
   font-weight: 400;
   font-size: 40px;
+  transition: 0.2s ease-in;
 }
 
 .loginSubTitle {
   font-weight: 400;
   font-size: 20px;
   margin: 0;
+  transition: 0.2s ease-in;
 }
 
 .imagePreview {
@@ -65,4 +69,28 @@ input.form-control:focus {
 
 input.form-control::placeholder {
   color: #fff;
+}
+
+#loginWhiteboard {
+  background-color: white;
+  border-radius: 10px;
+  height: 100%;
+  width: 100%;
+  cursor: crosshair;
+}
+
+#loginColLeft {
+  border-right: 1px solid grey;
+}
+
+.loginSmallText {
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.loginSmallText:hover {
+  text-decoration: underline;
 }

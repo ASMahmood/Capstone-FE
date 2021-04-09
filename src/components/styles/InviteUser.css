@@ -1,4 +1,7 @@
 #addUserbox {
+  background-color: #11132e33;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 6px -6px rgba(49, 49, 49, 0.295);
   z-index: 50 !important;
   position: absolute;
   right: 0;
@@ -7,5 +10,12 @@
   padding: 5px;
   border: 1px solid rgb(114, 114, 114);
   border-radius: 10px;
-  background-color: white;
+}
+
+#addUserBox input.form-control::placeholder {
+  color: black;
+}
+
+.inviteToggle {
+  cursor: pointer;
 }

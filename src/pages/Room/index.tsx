@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
 import { Container, Row, Col, Button } from "react-bootstrap";
-import { AiOutlineUserAdd } from "react-icons/ai";
+import { BsChatDots } from "react-icons/bs";
 import { connect } from "react-redux";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import { Dispatch } from "redux";
@@ -42,6 +42,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
 function RoomPage(props: roomProps) {
   const [joining, setJoin] = useState<boolean>(false);
+  const [showChat, setShow] = useState<boolean>(false);
 
   useEffect(() => {
     const checkIfOnline = async () => {
@@ -67,8 +68,11 @@ function RoomPage(props: roomProps) {
       }
     };
     getAndPopulate(props.match.params.id);
+  }, []);
 
+  useEffect(() => {
     return () => {
+      console.log("UNMOUNTING ROOM PAGE");
       leaveRoom({
         roomId: props.room._id,
         username: props.user.username,
@@ -90,10 +94,15 @@ function RoomPage(props: roomProps) {
         <Col xs={12} className="roomNavTop d-flex align-items-center">
           <h2 className="m-0">{props.room.name} </h2>
           <h5 className="ml-3"> {props.room.participants.length} members</h5>
+          <BsChatDots
+            className="ml-auto chatToggle"
+            fontSize="30"
+            onClick={() => (showChat ? setShow(false) : setShow(true))}
+          />
           {joining ? (
             <Button
-              className="ml-auto"
               onClick={(e) => handleJoin(e)}
+              className="ml-3"
               variant="secondary"
             >
               JOIN
@@ -105,11 +114,17 @@ function RoomPage(props: roomProps) {
       </Row>
       <Row className="mt-4">
         <>
-          <Col className="whiteBoard">
+          <Col xs={12} className="whiteBoard">
             <WhiteBoard />
             <WhiteBoardOption />
           </Col>
-          <div className="chatBox d-flex flex-column justify-content-end">
+          <div
+            className={
+              showChat
+                ? "chatBox d-flex flex-column justify-content-end position-absolute"
+                : "chatBox d-flex flex-column justify-content-end position-absolute invisible"
+            }
+          >
             <ChatList />
             <SendMessage />
           </div>
