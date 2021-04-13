@@ -30,10 +30,15 @@ export const scrollToBottom = () => {
 
 function ChatList(props: chatListProps) {
   useEffect(() => {
-    listenChat(props.newMessage, scrollToBottom);
+    listenChat(autoScrollOnRecieve);
     console.log("CHATLIST RENDER");
     autoScrollchat();
   }, []);
+
+  const autoScrollOnRecieve = async (data: object) => {
+    await props.newMessage(data);
+    scrollToBottom();
+  };
 
   const autoScrollchat = () => {
     const chatList: Element = document.querySelector("#chatList") as Element;
