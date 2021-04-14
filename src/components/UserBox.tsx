@@ -25,6 +25,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 function UserBox(props: userBoxProps) {
   const [editProfile, setEdit] = useState<boolean>(false);
   const [username, setUsername] = useState<string>(props.user.username);
+  const [localLoading, setLocalLoading] = useState<boolean>(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -33,8 +34,10 @@ function UserBox(props: userBoxProps) {
   }, []);
 
   const handleChange = async (image: File) => {
+    setLocalLoading(true);
     let updatedUser = await editProfilePic(image);
     props.populateUser(updatedUser);
+    setLocalLoading(false);
   };
 
   const handleSubmit = async () => {
@@ -65,7 +68,11 @@ function UserBox(props: userBoxProps) {
               alt="profile"
               className="homePagePic mx-4"
             />
-            <HiOutlineCog className="cogIcon mr-4" />
+            <HiOutlineCog
+              className={
+                localLoading ? "cogIcon mr-4 spinAnimation" : "cogIcon mr-4"
+              }
+            />
           </Form.Label>
           <Form.Control
             type="file"

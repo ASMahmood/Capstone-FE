@@ -46,6 +46,7 @@ function HomePage(props: homePageProps) {
         props.toggleLoader(false);
       } else {
         props.history.push("/login");
+        props.toggleLoader(false);
       }
     };
     checkIfOnline();

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.css";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { loginUser, registerUser, setProfilePic } from "../../functions/api";
@@ -64,6 +64,10 @@ export default function Login(props: RouteComponentProps) {
     }
     setValidated(true);
   };
+
+  useEffect(() => {
+    dispatch({ type: "TOGGLE_LOADING", payload: false });
+  }, []);
 
   return (
     <Container className="loginBody centerForm">
