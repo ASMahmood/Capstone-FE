@@ -17,12 +17,14 @@ function NavBar(props: RouteComponentProps) {
     <Navbar>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="d-flex justify-content-center w-100">
+        <Nav className="d-flex justify-content-center align-items-center w-100">
           <div
             className="navDiv d-flex flex-column align-items-center justify-content-center"
             onClick={async () => {
               await dispatch({ type: "TOGGLE_LOADING", payload: true });
               props.history.push("/");
+              if (props.location.pathname === "/")
+                dispatch({ type: "TOGGLE_LOADING", payload: false });
             }}
           >
             <AiOutlineHome fontSize="18" />
