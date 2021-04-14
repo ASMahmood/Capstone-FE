@@ -33,11 +33,11 @@ export default function Login(props: RouteComponentProps) {
       if (image !== undefined) {
         await setProfilePic(response.message, image);
         setExtra(false);
-        dispatch({ type: "TOGGLE_LOADING", payload: true });
+        dispatch({ type: "TOGGLE_LOADING", payload: false });
         props.history.push("/login");
       } else {
         setExtra(false);
-        dispatch({ type: "TOGGLE_LOADING", payload: true });
+        dispatch({ type: "TOGGLE_LOADING", payload: false });
         props.history.push("/login");
       }
     }
@@ -45,6 +45,7 @@ export default function Login(props: RouteComponentProps) {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    dispatch({ type: "TOGGLE_LOADING", payload: true });
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
       e.stopPropagation();
