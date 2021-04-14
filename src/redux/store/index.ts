@@ -28,7 +28,7 @@ export const initalState = {
     code: 0,
     severity: "",
   },
-  loading: false,
+  loading: true,
   room: {
     canvases: [],
     participants: [],

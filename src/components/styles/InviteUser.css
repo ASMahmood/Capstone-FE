@@ -1,5 +1,5 @@
 #addUserbox {
-  background-color: #11132e33;
+  background-color: #511474af;
   backdrop-filter: blur(8px);
   box-shadow: 0 10px 6px -6px rgba(49, 49, 49, 0.295);
   z-index: 50 !important;
@@ -18,4 +18,16 @@
 
 .inviteToggle {
   cursor: pointer;
+}
+
+.addUserButton {
+  border-color: #ffffff;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.addUserButton:hover {
+  background-color: #0c0d0a;
+  color: #383d81c4;
+  border: 1px solid #383d81c4;
 }

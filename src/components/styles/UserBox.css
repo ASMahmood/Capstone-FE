@@ -56,3 +56,29 @@
   background-color: transparent;
   visibility: hidden;
 }
+
+.cogIcon {
+  color: white;
+  background-color: #11132e33;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 6px -6px rgba(49, 49, 49, 0.295);
+  border-radius: 100%;
+  font-size: 30px;
+  position: absolute;
+  cursor: pointer;
+  right: 0;
+  bottom: 0;
+}
+
+.spinAnimation {
+  animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

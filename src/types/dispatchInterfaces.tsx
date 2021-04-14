@@ -9,3 +9,7 @@ export interface populateRoomDispatch {
 export interface messageDispatch {
   newMessage: (message: object) => { type: string; payload: object };
 }
+
+export interface loaderDispatch {
+  toggleLoader: (current: boolean) => { type: string; payload: boolean };
+}

@@ -6,6 +6,7 @@ import { uploadAttachment } from "../functions/api";
 import { Dispatch } from "redux";
 import { chatMessage } from "../types/otherInterfaces";
 import { reduxStore, individualMessage } from "../types/reduxInterface";
+import { scrollToBottom } from "./ChatList";
 import { messageDispatch } from "../types/dispatchInterfaces";
 import "./styles/SendMessage.css";
 
@@ -37,7 +38,7 @@ function SendMessage(props: sendMessageProps) {
     }
   };
 
-  const sendMessage = (filename: string) => {
+  const sendMessage = async (filename: string) => {
     const message = {
       sender: props.user.username,
       text: text,
@@ -45,7 +46,8 @@ function SendMessage(props: sendMessageProps) {
       attachment: filename,
     };
     sendChat({ ...message, roomId: props.room._id });
-    props.newMessage(message);
+    await props.newMessage(message);
+    scrollToBottom();
     setText("");
   };
 

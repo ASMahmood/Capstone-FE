@@ -34,3 +34,7 @@
 .navDiv > .nav-link {
   color: #fff !important;
 }
+
+.navLogo {
+  cursor: auto;
+}

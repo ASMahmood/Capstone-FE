@@ -1,0 +1,67 @@
+#pageLoader {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: #8bc6ec;
+  background-image: linear-gradient(
+    135deg,
+    #130a68 0%,
+    #410d46 50%,
+    #2c308d 100%
+  );
+}
+
+#secondLayer {
+  background-color: #0e0c3b00;
+  background-repeat: repeat;
+  background-image: url("https://www.transparenttextures.com/patterns/shattered.png");
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#secondLayer > img {
+  width: 150px;
+  height: 150px;
+}
+
+.spinner {
+  margin: 100px auto;
+  -webkit-animation: sk-rotateplane 3s infinite ease-in-out;
+  animation: sk-rotateplane 3s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-rotateplane {
+  0% {
+    -webkit-transform: perspective(120px);
+  }
+  50% {
+    -webkit-transform: perspective(120px) rotateY(180deg);
+  }
+  100% {
+    -webkit-transform: perspective(120px) rotateY(180deg) rotateY(360deg);
+  }
+}
+
+@keyframes sk-rotateplane {
+  0% {
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+  }
+  50% {
+    transform: perspective(120px) rotateX(0deg) rotateY(-179.9deg);
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(-179.9deg);
+  }
+  100% {
+    transform: perspective(120px) rotateX(0deg) rotateY(-360deg);
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(-360deg);
+  }
+}

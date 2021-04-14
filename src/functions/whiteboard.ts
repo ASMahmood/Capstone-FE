@@ -194,7 +194,9 @@ export const userWhiteboard = async (props: reduxStore) => {
     image.width = userWhiteboard.offsetWidth;
     image.height = userWhiteboard.offsetHeight;
   }
-  draw();
+  if (props.user.bioImage) {
+    draw();
+  }
 
   userCanvas.addEventListener("mousedown", onMouseDown, false);
   userCanvas.addEventListener("mouseup", onMouseUp, false);

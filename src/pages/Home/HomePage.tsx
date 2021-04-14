@@ -7,13 +7,19 @@ import "./HomePage.css";
 import { fetchMe, fetchRandomMeme } from "../../functions/api";
 import { fetchUserInfo } from "../../functions/other";
 import { reduxStore } from "../../types/reduxInterface";
-import { populateUserDispatch } from "../../types/dispatchInterfaces";
+import {
+  populateUserDispatch,
+  loaderDispatch,
+} from "../../types/dispatchInterfaces";
 import UserBox from "../../components/UserBox";
 import CreateRoom from "../../components/CreateRoom";
 import RoomList from "../../components/RoomList";
 import FriendList from "../../components/FriendList";
 
-type homePageProps = reduxStore & RouteComponentProps & populateUserDispatch;
+type homePageProps = reduxStore &
+  RouteComponentProps &
+  populateUserDispatch &
+  loaderDispatch;
 
 const mapStateToProps = (state: reduxStore) => state;
 
@@ -23,6 +29,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
       type: "POPULATE_USER",
       payload: user,
     }),
+  toggleLoader: (current: boolean) =>
+    dispatch({ type: "TOGGLE_LOADING", payload: current }),
 });
 
 function HomePage(props: homePageProps) {
@@ -33,13 +41,15 @@ function HomePage(props: homePageProps) {
       const response = await fetchUserInfo();
       if (response) {
         const user = await fetchMe();
-        props.populateUser(user);
+        await props.populateUser(user);
+        await fetchAndAssignImg();
+        props.toggleLoader(false);
       } else {
         props.history.push("/login");
+        props.toggleLoader(false);
       }
     };
     checkIfOnline();
-    fetchAndAssignImg();
   }, []);
 
   const fetchAndAssignImg = async () => {

@@ -1,14 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
 import { reduxStore, individualRoom } from "../types/reduxInterface";
-import { populateRoomDispatch } from "../types/dispatchInterfaces";
+import {
+  populateRoomDispatch,
+  loaderDispatch,
+} from "../types/dispatchInterfaces";
 import { ListGroup } from "react-bootstrap";
 import { Dispatch } from "redux";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import { fetchRoom } from "../functions/api";
 import "./styles/RoomList.css";
 
-type roomListProps = reduxStore & populateRoomDispatch & RouteComponentProps;
+type roomListProps = reduxStore &
+  populateRoomDispatch &
+  RouteComponentProps &
+  loaderDispatch;
 
 const mapStateToProps = (state: reduxStore) => state;
 
@@ -18,12 +24,15 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
       type: "POPULATE_ROOM",
       payload: room,
     }),
+  toggleLoader: (current: boolean) =>
+    dispatch({ type: "TOGGLE_LOADING", payload: current }),
 });
 
 function RoomList(props: roomListProps) {
   const handleClick = async (id: string) => {
     const response = await fetchRoom(id);
     if (Object.keys(response).length > 1) {
+      props.toggleLoader(true);
       await props.populateRoom(response);
       props.history.push("/room/" + id);
     } else {

@@ -20,7 +20,7 @@
 
 .otherMessage {
   border-radius: 0 10px 10px 10px;
-  background-color: rgb(29, 189, 29);
+  background-color: #665ead;
   color: black;
   margin: 3px 0;
   padding: 2px 10px;
@@ -29,7 +29,7 @@
 }
 .userMessage {
   border-radius: 10px 0 10px 10px;
-  background-color: rgb(11, 168, 189);
+  background-color: #a45caa;
   color: black;
   text-align: end;
   padding: 2px 10px;

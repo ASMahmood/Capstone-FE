@@ -22,17 +22,24 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     }),
 });
 
+export const scrollToBottom = () => {
+  console.log("SCROLL BOYS");
+  const chatList: Element = document.querySelector("#chatList") as Element;
+  chatList.scrollTop = chatList.scrollHeight;
+};
+
 function ChatList(props: chatListProps) {
   useEffect(() => {
-    listenChat(props.newMessage, scrollToBottom);
+    listenChat(autoScrollOnRecieve);
     console.log("CHATLIST RENDER");
     autoScrollchat();
   }, []);
 
-  const scrollToBottom = () => {
-    const chatList: Element = document.querySelector("#chatList") as Element;
-    chatList.scrollTop = chatList.scrollHeight;
+  const autoScrollOnRecieve = async (data: object) => {
+    await props.newMessage(data);
+    scrollToBottom();
   };
+
   const autoScrollchat = () => {
     const chatList: Element = document.querySelector("#chatList") as Element;
     if (chatList) {
