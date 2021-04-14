@@ -45,11 +45,12 @@ export default function Login(props: RouteComponentProps) {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch({ type: "TOGGLE_LOADING", payload: true });
+
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
       e.stopPropagation();
     } else {
+      dispatch({ type: "TOGGLE_LOADING", payload: true });
       loginRequest();
     }
     setValidated(true);
@@ -62,6 +63,7 @@ export default function Login(props: RouteComponentProps) {
     if (form.checkValidity() === false) {
       e.stopPropagation();
     } else {
+      dispatch({ type: "TOGGLE_LOADING", payload: true });
       registerRequest();
     }
     setValidated(true);
