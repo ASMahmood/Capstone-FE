@@ -4,6 +4,7 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { loginUser, registerUser, setProfilePic } from "../../functions/api";
 import { RouteComponentProps } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import logo from "../../logo1.png";
 
 export default function Login(props: RouteComponentProps) {
   const [email, setEmail] = useState<string>("");
@@ -83,9 +84,7 @@ export default function Login(props: RouteComponentProps) {
       </Row>
       <Row>
         <Col id="loginColLeft" xs={4}>
-          <div id="loginWhiteboard">
-            <canvas id="loginCanvas"></canvas>
-          </div>
+          <img src={logo} className={extraInfo ? "moveLogo" : ""} alt="logo" />
         </Col>
         <Col xs={8}>
           <Form

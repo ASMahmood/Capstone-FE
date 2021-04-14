@@ -25,6 +25,7 @@
   border-radius: 15px;
   padding: 0;
   position: relative;
+  cursor: crosshair;
 }
 
 .chatBox {
