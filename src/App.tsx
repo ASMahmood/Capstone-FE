@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Route, withRouter, RouteComponentProps } from "react-router-dom";
 import { reduxStore } from "./types/reduxInterface";
