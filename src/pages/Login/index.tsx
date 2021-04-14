@@ -3,6 +3,7 @@ import "./style.css";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { loginUser, registerUser, setProfilePic } from "../../functions/api";
 import { RouteComponentProps } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 export default function Login(props: RouteComponentProps) {
   const [email, setEmail] = useState<string>("");
@@ -11,11 +12,13 @@ export default function Login(props: RouteComponentProps) {
   const [image, setImage] = useState<File>();
   const [extraInfo, setExtra] = useState<boolean>(false);
   const [validated, setValidated] = useState<boolean>(false);
+  const dispatch = useDispatch();
 
   const loginRequest = async () => {
     const response = await loginUser(email, password);
     console.log(response);
     if (response.message === "logged in") {
+      dispatch({ type: "TOGGLE_LOADING", payload: true });
       props.history.push("/");
     } else {
       setExtra(true);
@@ -29,9 +32,11 @@ export default function Login(props: RouteComponentProps) {
       if (image !== undefined) {
         await setProfilePic(response.message, image);
         setExtra(false);
+        dispatch({ type: "TOGGLE_LOADING", payload: true });
         props.history.push("/login");
       } else {
         setExtra(false);
+        dispatch({ type: "TOGGLE_LOADING", payload: true });
         props.history.push("/login");
       }
     }
