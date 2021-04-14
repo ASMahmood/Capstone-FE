@@ -9,6 +9,7 @@ import { reduxStore } from "../../types/reduxInterface";
 import {
   populateRoomDispatch,
   populateUserDispatch,
+  loaderDispatch,
 } from "../../types/dispatchInterfaces";
 import { MatchParams } from "../../types/routerDomInterfaces";
 import { leaveRoom } from "../../functions/socket";
@@ -24,6 +25,7 @@ import MembersDropdown from "../../components/MembersDropdown";
 type roomProps = reduxStore &
   populateRoomDispatch &
   populateUserDispatch &
+  loaderDispatch &
   RouteComponentProps<MatchParams>;
 
 const mapStateToProps = (state: reduxStore) => state;
@@ -39,6 +41,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
       type: "POPULATE_USER",
       payload: user,
     }),
+  toggleLoader: (current: boolean) =>
+    dispatch({ type: "TOGGLE_LOADING", payload: current }),
 });
 
 function RoomPage(props: roomProps) {
@@ -47,6 +51,7 @@ function RoomPage(props: roomProps) {
 
   useEffect(() => {
     const checkIfOnline = async () => {
+      props.toggleLoader(true);
       const response = await fetchUserInfo();
       if (response) {
         const user = await fetchMe();
@@ -64,6 +69,7 @@ function RoomPage(props: roomProps) {
       const response = await fetchRoom(id);
       if (Object.keys(response).length > 1) {
         await props.populateRoom(response);
+        props.toggleLoader(false);
       } else {
         console.log("error! in da matrix");
       }

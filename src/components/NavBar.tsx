@@ -2,6 +2,7 @@ import React from "react";
 import { Nav, Navbar, Form, Button } from "react-bootstrap";
 import { Link, RouteComponentProps, withRouter } from "react-router-dom";
 import { logoutUser } from "../functions/api";
+import { useDispatch } from "react-redux";
 import {
   AiOutlineSearch,
   AiOutlineHome,
@@ -10,6 +11,7 @@ import {
 import "./styles/NavBar.css";
 
 function NavBar(props: RouteComponentProps) {
+  const dispatch = useDispatch();
   return (
     <Navbar>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -17,7 +19,10 @@ function NavBar(props: RouteComponentProps) {
         <Nav className="d-flex justify-content-center w-100">
           <div
             className="navDiv d-flex flex-column align-items-center justify-content-center"
-            onClick={() => props.history.push("/")}
+            onClick={async () => {
+              await dispatch({ type: "TOGGLE_LOADING", payload: true });
+              props.history.push("/");
+            }}
           >
             <AiOutlineHome fontSize="18" />
             <span className="nav-link py-0">Home</span>
