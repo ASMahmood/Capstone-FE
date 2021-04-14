@@ -9,6 +9,7 @@ import {
   AiOutlineLogout,
 } from "react-icons/ai";
 import "./styles/NavBar.css";
+import logo from "../logo1.png";
 
 function NavBar(props: RouteComponentProps) {
   const dispatch = useDispatch();
@@ -26,6 +27,16 @@ function NavBar(props: RouteComponentProps) {
           >
             <AiOutlineHome fontSize="18" />
             <span className="nav-link py-0">Home</span>
+          </div>
+
+          <div
+            className="navDiv  navLogo mt-4 ml-5 d-flex flex-column align-items-center justify-content-center"
+            onClick={async () => {
+              await dispatch({ type: "TOGGLE_LOADING", payload: true });
+              props.history.push("/");
+            }}
+          >
+            <img src={logo} alt="logo" width="120px" />
           </div>
 
           <div
