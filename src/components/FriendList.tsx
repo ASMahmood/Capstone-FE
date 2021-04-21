@@ -17,8 +17,9 @@ function FriendList(props: reduxStore) {
             </ListGroup.Item>
           ))
         ) : (
-          <ListGroup.Item className="noListings">
-            No Friends Yet!
+          <ListGroup.Item className="noListings text-center">
+            <p className="m-0">No Friends Yet!</p>
+            <small className="addFriendText">Let's add some!</small>
           </ListGroup.Item>
         )}
       </ListGroup>
