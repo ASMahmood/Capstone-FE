@@ -75,7 +75,7 @@ function HomePage(props: homePageProps) {
         >
           <RoomList />
         </Col>
-        <Col xs={9} className="pl-5">
+        <Col xs={6} className="px-5">
           <Row>
             <Col
               xs={12}
@@ -83,15 +83,7 @@ function HomePage(props: homePageProps) {
             >
               <CreateRoom />
             </Col>
-          </Row>
-          <Row className="mt-4">
-            <Col
-              xs={6}
-              className="friendList d-flex justify-content-center align-items-center"
-            >
-              <FriendList />
-            </Col>
-            <Col xs={6} className="pr-0">
+            <Col xs={12} className="mt-4 p-0">
               <div className="randoMeme d-flex justify-content-center align-items-center text-center">
                 {img && (
                   <img src={img} alt="randomMeme" className="randoMemeImg" />
@@ -99,6 +91,12 @@ function HomePage(props: homePageProps) {
               </div>
             </Col>
           </Row>
+        </Col>
+        <Col
+          xs={3}
+          className="friendList d-flex justify-content-center align-items-center"
+        >
+          <FriendList />
         </Col>
       </Row>
     </Container>
