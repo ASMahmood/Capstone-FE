@@ -64,13 +64,28 @@ function NavBar(props: RouteComponentProps) {
           </div>
 
           <div
-            className="navDiv ml-5 d-flex flex-column align-items-center justify-content-center"
-            onClick={async () => {
-              searching ? setSearching(false) : setSearching(true);
-            }}
+            className={
+              searching
+                ? "expandedNavDiv navDiv ml-5 d-flex align-items-center justify-content-center"
+                : "navDiv ml-5 d-flex align-items-center justify-content-center"
+            }
           >
-            <AiOutlineLogout fontSize="18" />
-            <span className="nav-link py-0">Search</span>
+            <div
+              className="searchLogo d-flex flex-column align-items-center justify-content-center"
+              onClick={async () => {
+                searching ? setSearching(false) : setSearching(true);
+              }}
+            >
+              <AiOutlineLogout fontSize="18" />
+              <span className="nav-link py-0">Search</span>
+            </div>
+
+            <Form.Control
+              type="text"
+              className={
+                searching ? "searchbarInput" : "searchbarInput hiddenInput"
+              }
+            />
           </div>
         </Nav>
         {/* <Form inline>

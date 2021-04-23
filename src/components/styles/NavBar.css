@@ -31,10 +31,29 @@
   background-color: #05050c33;
 }
 
-.navDiv > .nav-link {
+.navDiv .nav-link {
   color: #fff !important;
 }
 
 .navLogo {
   cursor: auto;
+}
+.expandedNavDiv {
+  width: 270px;
+}
+
+.navDiv .searchbarInput {
+  visibility: visible;
+  width: 200px;
+
+  transition: 0.2s ease-in;
+}
+
+.navDiv .hiddenInput {
+  visibility: hidden;
+  width: 0px;
+}
+
+.navDiv .searchLogo {
+  transition: 0.2s ease-in;
 }
