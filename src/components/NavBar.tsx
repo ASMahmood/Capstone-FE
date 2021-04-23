@@ -7,6 +7,7 @@ import {
   AiOutlineSearch,
   AiOutlineHome,
   AiOutlineLogout,
+  AiOutlineBell,
 } from "react-icons/ai";
 import "./styles/NavBar.css";
 import logo from "../logo1.png";
@@ -26,7 +27,7 @@ function NavBar(props: RouteComponentProps) {
               props.history.push("/login");
             }}
           >
-            <AiOutlineLogout fontSize="18" />
+            <AiOutlineBell fontSize="18" />
             <span className="nav-link py-0">Alerts</span>
           </div>
           <div
@@ -76,14 +77,16 @@ function NavBar(props: RouteComponentProps) {
                 searching ? setSearching(false) : setSearching(true);
               }}
             >
-              <AiOutlineLogout fontSize="18" />
+              <AiOutlineSearch fontSize="18" />
               <span className="nav-link py-0">Search</span>
             </div>
 
             <Form.Control
               type="text"
               className={
-                searching ? "searchbarInput" : "searchbarInput hiddenInput"
+                searching
+                  ? "searchbarInput"
+                  : "searchbarInput hiddenInput d-none"
               }
             />
           </div>
