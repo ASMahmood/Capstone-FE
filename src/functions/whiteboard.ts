@@ -175,9 +175,10 @@ export const userWhiteboard = async (props: reduxStore) => {
   const userCanvas: HTMLCanvasElement = document.querySelector(
     "#userCanvas"
   ) as HTMLCanvasElement;
-  const ctx2: CanvasRenderingContext2D = userCanvas.getContext(
-    "2d"
-  ) as CanvasRenderingContext2D;
+  let ctx2: CanvasRenderingContext2D;
+  if (userCanvas !== null) {
+    ctx2 = userCanvas.getContext("2d") as CanvasRenderingContext2D;
+  }
   const userWhiteboard: HTMLElement = document.querySelector(
     "#userWhiteboard"
   ) as HTMLElement;
@@ -198,11 +199,15 @@ export const userWhiteboard = async (props: reduxStore) => {
     draw();
   }
 
-  userCanvas.addEventListener("mousedown", onMouseDown, false);
-  userCanvas.addEventListener("mouseup", onMouseUp, false);
-  userCanvas.addEventListener("mouseout", onMouseUp, false);
-  userCanvas.addEventListener("mousemove", onMouseMove, false);
-  editButton.addEventListener("click", toggleEdit, false);
+  if (userCanvas !== null) {
+    userCanvas.addEventListener("mousedown", onMouseDown, false);
+    userCanvas.addEventListener("mouseup", onMouseUp, false);
+    userCanvas.addEventListener("mouseout", onMouseUp, false);
+    userCanvas.addEventListener("mousemove", onMouseMove, false);
+  }
+  if (editButton !== null) {
+    editButton.addEventListener("click", toggleEdit, false);
+  }
 
   window.addEventListener("resize", onResize, false);
   onResize();
@@ -251,8 +256,10 @@ export const userWhiteboard = async (props: reduxStore) => {
   }
 
   function onResize() {
-    userCanvas.width = userWhiteboard.offsetWidth;
-    userCanvas.height = userWhiteboard.offsetHeight;
-    draw();
+    if (userCanvas !== null) {
+      userCanvas.width = userWhiteboard.offsetWidth;
+      userCanvas.height = userWhiteboard.offsetHeight;
+      draw();
+    }
   }
 };
