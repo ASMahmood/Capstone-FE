@@ -15,6 +15,12 @@ import logo from "../logo1.png";
 function NavBar(props: RouteComponentProps) {
   const dispatch = useDispatch();
   const [searching, setSearching] = useState<boolean>(false);
+  const [searchInput, setSearchInput] = useState<string>("");
+
+  const inputChange = (e: React.ChangeEvent) => {
+    console.log(e);
+  };
+
   return (
     <Navbar>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -83,6 +89,8 @@ function NavBar(props: RouteComponentProps) {
 
             <Form.Control
               type="text"
+              value={searchInput}
+              onChange={(e) => inputChange(e)}
               className={
                 searching
                   ? "searchbarInput"
