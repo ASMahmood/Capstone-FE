@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, FormEvent, ChangeEvent } from "react";
 import { Nav, Navbar, Form, Button } from "react-bootstrap";
 import { Link, RouteComponentProps, withRouter } from "react-router-dom";
-import { logoutUser } from "../functions/api";
+import { logoutUser, searchUsers } from "../functions/api";
 import { useDispatch } from "react-redux";
 import {
   AiOutlineSearch,
@@ -17,8 +17,11 @@ function NavBar(props: RouteComponentProps) {
   const [searching, setSearching] = useState<boolean>(false);
   const [searchInput, setSearchInput] = useState<string>("");
 
-  const inputChange = (e: React.ChangeEvent) => {
-    console.log(e);
+  const inputChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
+    await setSearchInput(e.currentTarget.value);
+    const users = await searchUsers(searchInput);
+    console.log(users);
   };
 
   return (
@@ -90,7 +93,7 @@ function NavBar(props: RouteComponentProps) {
             <Form.Control
               type="text"
               value={searchInput}
-              onChange={(e) => inputChange(e)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => inputChange(e)}
               className={
                 searching
                   ? "searchbarInput"

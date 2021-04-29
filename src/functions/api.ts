@@ -278,3 +278,19 @@ export const logoutUser = async (): Promise<singleMessageResponse> => {
     return { message: "Error setting profile pic" };
   }
 };
+
+export const searchUsers = async (query: string) => {
+  try {
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/users?name=${query}`,
+      {
+        credentials: "include",
+      }
+    );
+    const parsedResp = await response.json();
+    return parsedResp;
+  } catch (error) {
+    console.log(error);
+    return { message: "Error setting profile pic" };
+  }
+};
